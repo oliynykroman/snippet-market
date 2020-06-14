@@ -3,5 +3,13 @@
 		{
 			"path": "."
 		}
-	]
+	],
+	"settings": {
+		"gitflow4code.features": [
+			{
+				"name": "feature/enivironement",
+				"base": "develop"
+			}
+		]
+	}
 }
