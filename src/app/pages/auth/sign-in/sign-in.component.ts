@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { PasswordStrengthValidator } from 'src/app/helpers/pasword-sterngth.validators';
 
 @Component({
   selector: 'app-sign-in',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInComponent implements OnInit {
 
-  constructor() { }
+  public loginForm: FormGroup;
+  constructor(private fb: FormBuilder) { }
 
-  ngOnInit(): void {
+  public initForm() {
+    this.loginForm = this.fb.group({
+      email: ['', Validators.required],
+      password: [null, Validators.compose([
+        Validators.required,
+        Validators.minLength(8),
+        PasswordStrengthValidator
+      ])]
+    });
+  }
+  public ngOnInit(): void {
+    this.initForm();
+  }
+
+  public submit() {
+    console.log(this.loginForm.value);
   }
 
 }

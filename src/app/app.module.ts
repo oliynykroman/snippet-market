@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ForgotPasswordModule } from './pages/auth/forgot-password/forgot-password.module';
 import { SignInModule } from './pages/auth/sign-in/sign-in.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,12 +18,15 @@ import { SignInModule } from './pages/auth/sign-in/sign-in.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     ForgotPasswordModule,
     SignInModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
