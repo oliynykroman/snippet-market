@@ -14,7 +14,10 @@ export class SignInComponent implements OnInit {
 
   public initForm() {
     this.loginForm = this.fb.group({
-      email: ['', Validators.required],
+      email: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
+      ])],
       password: [null, Validators.compose([
         Validators.required,
         Validators.minLength(8),
