@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/sign-up/sign-up.module').then(m => m.SignUpModule)
   },
   {
-    path:'restore',
+    path: 'restore',
     loadChildren: ()=> import('./pages/auth/forgot-password/forgot-password-routing.module').then(m => m.ForgotPasswordRoutingModule)
   }
 ];

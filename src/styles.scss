@@ -20,3 +20,7 @@ app-root{
     padding: 15px;
     margin: 0 auto;
 }
+// override invalid message 
+.invalid-feedback{
+    display: block;
+}
