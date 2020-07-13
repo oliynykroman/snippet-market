@@ -4,6 +4,9 @@ import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { tap, first, switchMap } from 'rxjs/operators';
+import { LocalStorageService } from './local-storage.service';
 const api = environment;
 
 @Injectable({
@@ -11,48 +14,27 @@ const api = environment;
 })
 export class AuthService {
 
-  constructor(private storage: StorageMap, private router: Router, private http: HttpClient) { }
+  constructor(private storage: StorageMap, private router: Router, private http: HttpClient, private localStorage: LocalStorageService) { }
   // apiDomain
 
 
-  public isAuthentificated(): boolean {
-    const token = localStorage.getItem('token');
-    //check token expire
-    return true;
+  public login(formData): Observable<any> {
+    return this.http.post<any>(`${api.apiDomain}/login`, formData).pipe(
+      switchMap((resp) => this.localStorage.saveToken(resp)),
+      tap(() => {
+        this.router.navigate(['/profile']);
+      }),
+      first());
   }
 
-  public login(formData: User): any {
-    this.http.post(`${api.apiDomain}/login`, formData).subscribe({
-      next: (resp: any) => {
-        this.storage.set('access_token', resp.access_token).subscribe({
-          next: () => {
-            // this.router.navigate([url]);
-          },
-          error: (error) => {
-            console.log(error);
-          }
-        });
+  public logout() {
+    this.storage.delete('access_token').pipe(first()).subscribe({
+      next: () => {
+        this.router.navigate(['/']);
       },
       error: (error) => {
-        return error;
-      }
 
-      // this.storage.set('access_token', resp.access_token).subscribe({
-      //   next: () => {
-      //     this.router.navigate([url]);
-      //   },
-      //   error: (error) => {
-      //     console.log(error);
-      //   }
-      // });
+      }
     });
   }
-  public logout() {
-    localStorage.removeItem('token');
-  }
-
-  public logIn(): boolean {
-    return (localStorage.getItem('token') !== null);
-  }
-
 }

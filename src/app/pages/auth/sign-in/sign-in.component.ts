@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PasswordStrengthValidator } from 'src/app/helpers/pasword-sterngth.validators';
 import { AuthService } from 'src/app/services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sign-in',
@@ -14,6 +15,7 @@ export class SignInComponent implements OnInit {
   public errorMessage: string = '';
 
   public loginForm: FormGroup;
+  public subscribtion = Subscription;
   constructor(private fb: FormBuilder, private authService: AuthService) { }
 
   public initForm() {
@@ -33,15 +35,21 @@ export class SignInComponent implements OnInit {
     this.initForm();
   }
 
+  // get formcontrolls
+  get f() { return this.loginForm.controls; }
+
+
   public showHidePass(el: any) {
     this.passwordHidden = !this.passwordHidden;
     el.type === 'password' ? el.type = 'text' : el.type = 'password';
   }
 
-  public submit() {
-    this.authService.login(this.loginForm.value);
+  public submit(): void {
+    this.authService.login(this.loginForm.value).subscribe({
+      error: (err) => {
+        this.errorMessage = err.error.message;
+      }
+    });
     this.loginForm.reset();
   }
-  
-
 }

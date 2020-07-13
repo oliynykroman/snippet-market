@@ -1,15 +1,15 @@
 <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="submit()">
     <h1 class="h3 mb-3 font-weight-normal text-center">Please sign in</h1>
 
-    <div class="alert alert-danger" role="alert" *ngIf="errorMessage.length > 0">
-        errorMessage
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+        {{errorMessage}}
     </div>
 
     <div class="form-group">
         <label for="inputEmail" class="sr-only">Email address</label>
         <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address"
             required />
-        <div *ngIf="loginForm.controls.email.invalid && (loginForm.controls.email.dirty || loginForm.controls.email.touched)"
+        <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)"
             class="invalid-feedback">
             Provide valid email
         </div>
@@ -38,13 +38,13 @@
                 </span>
             </div>
         </div>
-        <div *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)"
+        <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)"
             class="invalid-feedback" style="display: block;">
-            <span *ngIf="loginForm.controls.password.errors.minlength">
+            <span *ngIf="f.password.errors.minlength">
                 Name must be at least 8 characters long.
             </span><br>
-            <span *ngIf="loginForm.controls.password.errors.passwordStrength">
-                {{loginForm.controls.password.errors.passwordStrength}}
+            <span *ngIf="f.password.errors.passwordStrength">
+                {{f.password.errors.passwordStrength}}
             </span>
         </div>
     </div>

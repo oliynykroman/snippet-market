@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './guard/auth.guard';
 
 
 const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'login',
     loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
@@ -13,7 +15,12 @@ const routes: Routes = [
   },
   {
     path: 'restore',
-    loadChildren: ()=> import('./pages/auth/forgot-password/forgot-password-routing.module').then(m => m.ForgotPasswordRoutingModule)
+    loadChildren: () => import('./pages/auth/forgot-password/forgot-password-routing.module').then(m => m.ForgotPasswordRoutingModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule),
+    canActivate: [AuthGuard]
   }
 ];
 

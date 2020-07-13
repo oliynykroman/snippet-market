@@ -8,7 +8,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ForgotPasswordModule } from './pages/auth/forgot-password/forgot-password.module';
 import { SignInModule } from './pages/auth/sign-in/sign-in.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthService } from './services/auth.service';
+import { AuthInterceptor } from './interceptors/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,11 @@ import { HttpClientModule } from '@angular/common/http';
     NgbModule
   ],
   providers: [
-    
+    AuthService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
