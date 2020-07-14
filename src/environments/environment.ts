@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   domain: 'http://localhost:4200',
   apiUrl: 'http://localhost:3000',
-  apiDomain: 'http://localhost:8000/auth',
+  apiDomain: 'http://localhost:8000',
 };
 
 /*

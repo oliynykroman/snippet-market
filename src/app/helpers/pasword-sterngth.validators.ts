@@ -1,8 +1,7 @@
 import { AbstractControl, ValidationErrors } from "@angular/forms"
 
 export const PasswordStrengthValidator = function (control: AbstractControl): ValidationErrors | null {
-
-
+    
     let value: string = control.value || '';
     let msg = "";
     if (!value) {

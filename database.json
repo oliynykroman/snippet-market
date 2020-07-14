@@ -44,6 +44,18 @@
       "id": 9,
       "email": "nilson8@email.com",
       "password": "nilson"
+    },
+    {
+      "name": "dewwq",
+      "email": "cscds@dscds.dcs",
+      "password": "wwww",
+      "id": 10
+    },
+    {
+      "name": "test",
+      "email": "test@test.com",
+      "password": "QQww11__",
+      "id": 11
     }
   ]
 }
