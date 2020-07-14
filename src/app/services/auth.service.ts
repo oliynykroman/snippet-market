@@ -33,7 +33,7 @@ export class AuthService {
         this.router.navigate(['/']);
       },
       error: (error) => {
-
+        console.log(error);
       }
     });
   }

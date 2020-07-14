@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class LocalStorageService {
 
-  constructor(private storage: StorageMap) { }
+  constructor(private storage: StorageMap, private router: Router) { }
 
   public saveToken(resp): Observable<any> {
     return new Observable((observer) => {
@@ -33,6 +33,6 @@ export class LocalStorageService {
         }
         return false;
       }
-      ), first());
+      ));
   }
 }
