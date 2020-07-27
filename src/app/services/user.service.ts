@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import * as jwt_decode from 'jwt-decode';
 
 const api = environment;
 
@@ -22,7 +23,9 @@ export class UserService {
     return this.http.post<any>(`${api.apiDomain}/auth/register`, formData);
   }
 
-  public getUser(){
-
+  public getUser() {
+    const token = this.localStorage.authTokenF();
+    var decoded = jwt_decode(token);
+    console.log(decoded['userId']);
   }
 }

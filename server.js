@@ -31,6 +31,7 @@ function isAuthenticated({email, password}){
 }
 
 // Register New User
+
 server.post('/auth/register', (req, res) => {
   console.log("register endpoint called; request body:");
   console.log(req.body);
@@ -86,7 +87,16 @@ server.post('/auth/login', (req, res) => {
     res.status(status).json({status, message})
     return
   }
-  const access_token = createToken({email, password})
+  let userId = null;
+
+  for (let k = 0; k < userdb.users.length; k++) {
+    console.log(userdb.users[k].email);
+    if (email === userdb.users[k].email && password === userdb.users[k].password){
+      userId = k + 1;
+      break;
+    }
+  }
+  const access_token = createToken({email, password, userId})
   console.log("Access Token:" + access_token);
   res.status(200).json({access_token})
 })
