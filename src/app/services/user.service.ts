@@ -13,10 +13,10 @@ const api = environment;
 })
 export class UserService {
 
-  constructor(private localStorage: LocalStorageService, private http: HttpClient, private router: Router) { }
+  constructor(private localStorageService: LocalStorageService, private http: HttpClient, private router: Router) { }
 
   public isUserLogged(): Observable<boolean> {
-    return this.localStorage.checkToken();
+    return this.localStorageService.checkToken();
   }
 
   public registration(formData): Observable<any> {
@@ -24,8 +24,10 @@ export class UserService {
   }
 
   public getUser() {
-    const token = this.localStorage.authTokenF();
+    const token = this.localStorageService.authTokenF();
     var decoded = jwt_decode(token);
-    console.log(decoded['userId']);
+    console.log(decoded.password);
+
+    return decoded;
   }
 }
