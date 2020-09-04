@@ -23,7 +23,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'shippets',
+    path: 'snippets',
     loadChildren: () => import('./pages/snippet/snippet.module').then(m => m.SnippetModule),
     canActivate: [AuthGuard]
   }
