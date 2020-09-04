@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   domain: 'http://localhost:4200',
-  apiUrl: 'http://localhost:3000',
-  apiDomain: 'http://localhost:8000',
+  userDataDomain: 'http://localhost:3000',
+  apiAuthDomain: 'http://localhost:8000',
 };
 
 /*

@@ -1,8 +1,15 @@
-export class User{
-    userId:number;
-    name: string;
+export class User {
+    id: number;
+    email: string;
+    password: string;
 }
-export class UserData extends User{
-    description:string;
-    gitProfile:string;
+export class UserData extends User {
+    secondName: string;
+    fisrtName: string;
+    gitProfile: string;
+}
+export class UserGitData extends UserData {
+    public_repos: number;
+    public_gists: number;
+    avatar_url: string;
 }

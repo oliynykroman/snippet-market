@@ -47,6 +47,4 @@ export class LocalStorageService {
   public authTokenF(): string {
     return this.authToken;
   }
-
-
 }

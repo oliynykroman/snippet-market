@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { SnippetRoutingModule } from './snippet-routing.module';
 import { SnippetComponent } from './snippet.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [SnippetComponent],
   imports: [
     CommonModule,
-    SnippetRoutingModule
+    SnippetRoutingModule,
+    RouterModule
   ]
 })
 export class SnippetModule { }

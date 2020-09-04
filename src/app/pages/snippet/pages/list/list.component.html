@@ -1,1 +1,23 @@
-<p>list works!</p>
+<div class="row justify-content-between align-items-center  mb-5">
+  <div class="col-8 col-md-10">
+    <h1 class="display-4">Snipeets</h1>
+  </div>
+  <button routerLink="/snippets/add" type="button" class="btn btn-info col-4 col-md-2" >Add new</button>
+</div>
+<div class="row">
+  <div class="col-6 col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.
+        </p>
+        <div class="btn-group" role="group" aria-label="Snippet actions">
+          <button type="button" class="btn btn-primary" [routerLink]="['/edit', id]">Edit snippet</button>
+          <button type="button" class="btn btn-danger">Delete snippet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

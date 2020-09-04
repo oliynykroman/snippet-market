@@ -18,7 +18,7 @@ export class AuthService {
   // apiDomain
 
   public login(formData): Observable<any> {
-    return this.http.post<any>(`${api.apiDomain}/auth/login`, formData).pipe(
+    return this.http.post<any>(`${api.apiAuthDomain}/auth/login`, formData).pipe(
       switchMap((resp) => this.localStorage.saveToken(resp)),
       tap(() => {
         this.router.navigate(['/profile']);

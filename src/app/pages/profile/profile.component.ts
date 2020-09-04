@@ -1,23 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { PasswordCheckValidator } from 'src/app/helpers/pasword-check.validators';
+import { Subscription } from 'rxjs';
+import { UserData } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
-
+export class ProfileComponent implements OnInit, OnDestroy {
+  public userId;
+  public userInfo: UserData;
+  public userGitInfo;
   public isPasswordChange = false;
+  public error: string = null;
   public profileForm: FormGroup;
+
+  private subscription: Subscription;
 
   constructor(private fb: FormBuilder, private userService: UserService) { }
 
   ngOnInit(): void {
     this.formInit();
-    this.userService.getUser();
+    this.userId = this.userService.getUser();
+    this.subscription = this.userService.getUserInfo(this.userId).subscribe((data) => { this.userInfo = data },
+      error => this.error = error.status);
+      console.log(this.userInfo);
+
+  }
+
+  // will get git data
+  getGitData(gitUrl) {
+    if (gitUrl) {
+      this.subscription = this.userService.getGitData(gitUrl).subscribe((data) => { this.userGitInfo = data; console.log(data) },
+        error => this.error = error.status);
+    }
   }
 
   formInit() {
@@ -59,5 +78,8 @@ export class ProfileComponent implements OnInit {
     console.log(this.profileForm.value);
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
 }
