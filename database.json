@@ -3,12 +3,46 @@
     {
       "id": 1,
       "email": "bruno@email.com",
-      "firstName":"Bruno",
-      "secondName":"Doe",
-      "gitProfile":"oliynykroman",
-      "avatar_url":"",
-      "public_repos":"",
-      "public_gists":""
+      "firstName": "Bruno",
+      "secondName": "Doe",
+      "gitProfile": "oliynykroman",
+      "avatar_url": "",
+      "public_repos": "",
+      "public_gists": ""
+    }
+  ],
+  "snippets": [
+    {
+      "id": 1,
+      "userId": 1,
+      "title": "test1",
+      "lang": "JS",
+      "description": "first snippet",
+      "snippet": "snippet body"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "title": "test2",
+      "lang": "JS2",
+      "description": "2first snippet",
+      "snippet": "2snippet body"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "title": "test3",
+      "lang": "JS3",
+      "description": "3first snippet",
+      "snippet": "3snippet body"
+    },
+    {
+      "id": 4,
+      "userId": 2,
+      "title": "senod user",
+      "lang": "JS3",
+      "description": "3first snippet",
+      "snippet": "3snippet body"
     }
   ]
 }

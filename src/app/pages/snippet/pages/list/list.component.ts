@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SnippetsService } from 'src/app/services/snippets.service';
+import { SnippetModel } from 'src/app/models/snippet.model';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  public snippetList: SnippetModel;
+
+  constructor(private snippetsService: SnippetsService) { }
 
   ngOnInit(): void {
+    this.snippetsService.getSnippets(1).subscribe(data => this.snippetList = data);
+  }
+  delete(id) {
+
   }
 
 }

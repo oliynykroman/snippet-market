@@ -17,12 +17,6 @@ export class UserService {
 
   constructor(private localStorageService: LocalStorageService, private http: HttpClient, private router: Router) { }
 
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      //  'Authorization': 'token ' + TOKEN
-    })
-  };
 
   public isUserLogged(): Observable<boolean> {
     return this.localStorageService.checkToken();
