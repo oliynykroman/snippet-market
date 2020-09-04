@@ -5,25 +5,25 @@ import { AddComponent } from './pages/add/add.component';
 import { SnippetComponent } from './snippet.component';
 import { EditComponent } from './pages/edit/edit.component';
 
-
 const routes: Routes = [{
   path: '',
-  component: SnippetComponent,
-  children: [
-    {
-      pathMatch: 'add',
-      component: AddComponent
-    },
-    {
-      pathMatch: 'list',
-      component: ListComponent
-    },
-    {
-      pathMatch: 'edit/:id',
-      component: EditComponent
-    }
-  ]
-}];
+  redirectTo: 'list',
+  pathMatch: 'full'
+},
+{
+  path: 'add',
+  component: AddComponent
+},
+{
+  path: 'list',
+  component: ListComponent
+},
+{
+  pathMatch: 'edit/:id',
+  component: EditComponent
+}
+
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
