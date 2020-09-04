@@ -1,0 +1,14 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "bruno@email.com",
+      "firstName":"Bruno",
+      "secondName":"Doe",
+      "gitProfile":"oliynykroman",
+      "avatar_url":"",
+      "public_repos":"",
+      "public_gists":""
+    }
+  ]
+}
