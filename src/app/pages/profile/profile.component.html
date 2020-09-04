@@ -1,0 +1,106 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h1>Profile</h1>
+        </div>
+    </div>
+</div>
+<div class=" mt-5 container">
+    <form class="row" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="col-sm-3">
+            <div class="portlet light profile-sidebar-portlet bordered d-flex justify-content-start flex-column">
+                <div class="profile-userpic">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-responsive" alt=""> </div>
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name"> </div>
+                    <div class="profile-usertitle-job"> Developer </div>
+                </div>
+            </div>
+            <button class="btn btn-lg btn-block" type="button" (click)="changePassword()">change password</button>
+
+        </div>
+        <div class="col-sm-6">
+            <div class="col-md-12">
+                <h4 class="mb-3">Billing address</h4>
+                <div class="needs-validation">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="firstName">First name</label>
+                            <input type="text" class="form-control" id="firstName" formControlName="firstName">
+                            <div class="invalid-feedback">
+                                Valid first name is required.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="lastName">Last name</label>
+                            <input type="text" class="form-control" id="lastName" formControlName="secondName">
+                            <div class="invalid-feedback">
+                                Valid last name is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="username">Email</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">@</span>
+                            </div>
+                            <input type="text" class="form-control" id="email" formControlName="email">
+                            <div class="invalid-feedback" style="width: 100%;">
+                                Your username is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email">Git profile (url) <span class="text-muted">(Optional)</span></label>
+                        <input type="email" class="form-control" id="email" placeholder="https://www.github.com"
+                            formControlName="gitProfile">
+                        <div class="invalid-feedback">
+                            Please enter string.
+                        </div>
+                    </div>
+                    <div *ngIf='isPasswordChange'>
+                        <h4>Change password</h4>
+                        <div class="mb-3">
+                            <label for="newPass">New password</label>
+                            <input type="password" class="form-control" id="newPass" formControlName="newPass">
+                            <div class="invalid-feedback">
+                                Please enter string.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newPassConfirm">Repeat new password</label>
+                            <input type="password" class="form-control" id="newPassConfirm"
+                                formControlName="newPassConfirm">
+                            <p *ngIf="newPass?.errors?.fieldMatch">These fields match</p>
+                        </div>
+                    </div>
+                    <hr class="mb-4">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Save data</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Git info</span>
+            </h4>
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Repos:</h6>
+                        <small class="text-muted">Public repos</small>
+                    </div>
+                    <span class="text-muted">$12</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <div>
+                        <h6 class="my-0">Gists:</h6>
+                        <small class="text-muted">Based on git</small>
+                    </div>
+                    <span class="text-muted">$8</span>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>
