@@ -4,5 +4,5 @@ export class SnippetModel {
     "title": string;
     "lang": string;
     "description": string;
-    "snippet": string;
+    "body": string;
 }

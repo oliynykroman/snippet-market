@@ -18,7 +18,7 @@
       "title": "test1",
       "lang": "JS",
       "description": "first snippet",
-      "snippet": "snippet body"
+      "body": "snippet body"
     },
     {
       "id": 2,
@@ -26,7 +26,7 @@
       "title": "test2",
       "lang": "JS2",
       "description": "2first snippet",
-      "snippet": "2snippet body"
+      "body": "2snippet body"
     },
     {
       "id": 3,
@@ -34,7 +34,7 @@
       "title": "test3",
       "lang": "JS3",
       "description": "3first snippet",
-      "snippet": "3snippet body"
+      "body": "3snippet body"
     },
     {
       "id": 4,
@@ -42,7 +42,7 @@
       "title": "senod user",
       "lang": "JS3",
       "description": "3first snippet",
-      "snippet": "3snippet body"
+      "body": "3snippet body"
     }
   ]
 }
