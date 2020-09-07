@@ -43,6 +43,36 @@
       "lang": "JS3",
       "description": "3first snippet",
       "body": "3snippet body"
+    },
+    {
+      "title": "test",
+      "description": "test",
+      "lang": "Javascript",
+      "body": "testtesrn",
+      "id": 5
+    },
+    {
+      "title": "test",
+      "description": "test",
+      "lang": "Javascript",
+      "body": "testtesrn",
+      "id": 6
+    },
+    {
+      "title": "21",
+      "description": "33",
+      "userId": 1,
+      "lang": "HTML",
+      "body": "321321321321",
+      "id": 7
+    },
+    {
+      "title": "dscds",
+      "description": "cdscds",
+      "userId": 1,
+      "lang": "CSS",
+      "body": "cdscds",
+      "id": 8
     }
   ]
 }

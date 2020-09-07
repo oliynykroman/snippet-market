@@ -19,7 +19,7 @@ const routes: Routes = [{
   component: ListComponent
 },
 {
-  pathMatch: 'edit',
+  pathMatch: 'edit/:id',
   component: EditComponent
 }
 
