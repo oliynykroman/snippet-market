@@ -16,7 +16,7 @@ export class SnippetsService {
     return this.http.post<SnippetModel>(`${api.userDataDomain}/snippets`, data);
   }
   public editSnippet(id, data) {
-    return this.http.patch<SnippetModel>(`${api.userDataDomain}/snippets${id}`, data);
+    return this.http.patch<SnippetModel>(`${api.userDataDomain}/snippets/${id}`, data);
   }
   public deleteSnippet(id) {
     return this.http.delete<SnippetModel>(`${api.userDataDomain}/snippets/${id}`);

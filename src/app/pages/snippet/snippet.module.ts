@@ -17,7 +17,8 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
     SnippetRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    CodemirrorModule
+    CodemirrorModule,
+    
   ]
 })
 export class SnippetModule { }

@@ -13,38 +13,6 @@
   ],
   "snippets": [
     {
-      "id": 1,
-      "userId": 1,
-      "title": "test1",
-      "lang": "JS",
-      "description": "first snippet",
-      "body": "snippet body"
-    },
-    {
-      "id": 2,
-      "userId": 1,
-      "title": "test2",
-      "lang": "JS2",
-      "description": "2first snippet",
-      "body": "2snippet body"
-    },
-    {
-      "id": 3,
-      "userId": 1,
-      "title": "test3",
-      "lang": "JS3",
-      "description": "3first snippet",
-      "body": "3snippet body"
-    },
-    {
-      "id": 4,
-      "userId": 2,
-      "title": "senod user",
-      "lang": "JS3",
-      "description": "3first snippet",
-      "body": "3snippet body"
-    },
-    {
       "title": "test",
       "description": "test",
       "lang": "Javascript",
@@ -59,20 +27,76 @@
       "id": 6
     },
     {
-      "title": "21",
-      "description": "33",
+      "title": "test",
+      "description": "test",
       "userId": 1,
-      "lang": "HTML",
-      "body": "321321321321",
+      "lang": "TypeScript",
+      "body": "ass",
       "id": 7
     },
     {
-      "title": "dscds",
-      "description": "cdscds",
+      "title": "dsd",
+      "description": "dasda",
+      "userId": 1,
+      "lang": "TypeScript",
+      "body": "dasdas",
+      "id": 8
+    },
+    {
+      "title": "dsd",
+      "description": "dasda",
+      "userId": 1,
+      "lang": "TypeScript",
+      "body": "dasdas",
+      "id": 9
+    },
+    {
+      "title": "cdas",
+      "description": "da",
+      "userId": 1,
+      "lang": "TypeScript",
+      "body": "das",
+      "id": 10
+    },
+    {
+      "title": "xas",
+      "description": "xas",
+      "userId": 1,
+      "lang": "TypeScript",
+      "body": "xsa",
+      "id": 11
+    },
+    {
+      "title": "xsa",
+      "description": "xas",
+      "userId": 1,
+      "lang": "TypeScript",
+      "body": "xas",
+      "id": 12
+    },
+    {
+      "title": "xsa",
+      "description": "xas",
+      "userId": 1,
+      "lang": "TypeScript",
+      "body": "xas",
+      "id": 13
+    },
+    {
+      "title": "sa",
+      "description": "xas",
       "userId": 1,
       "lang": "CSS",
-      "body": "cdscds",
-      "id": 8
+      "body": "xas",
+      "id": 14
+    },
+    {
+      "title": "xsa",
+      "description": "xas",
+      "userId": 1,
+      "lang": "Javascript",
+      "body": "xas",
+      "id": 15
     }
   ]
 }

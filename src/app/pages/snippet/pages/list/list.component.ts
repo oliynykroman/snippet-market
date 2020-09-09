@@ -9,6 +9,7 @@ import { SnippetModel } from 'src/app/models/snippet.model';
 })
 export class ListComponent implements OnInit {
 
+  error: string = null;
   public snippetList: SnippetModel;
 
   constructor(private snippetsService: SnippetsService) { }
@@ -16,8 +17,14 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.snippetsService.getSnippets(1).subscribe(data => this.snippetList = data);
   }
-  delete(id) {
-
+  deleteItem(id) {
+    this.snippetsService.deleteSnippet(id).subscribe({
+      next(data) {
+      },
+      error(msg) {
+        this.error = msg;
+      }
+    });
   }
 
 }
