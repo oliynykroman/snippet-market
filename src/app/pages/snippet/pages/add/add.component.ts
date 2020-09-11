@@ -11,7 +11,8 @@ import { SnippetModel } from 'src/app/models/snippet.model';
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  styleUrls: ['./add.component.scss'],
+  providers: [NgbModal]
 })
 export class AddComponent implements OnInit {
 
@@ -43,12 +44,8 @@ export class AddComponent implements OnInit {
   }
 
   onSubmit() {
-    this.snippetService.addSnippet(this.addSnippet.value).pipe(
-      switchMap((result) => this.snippetService.addSnippet(result)),
-      tap(() => {
-        console.log('cds');
-        this.router.navigate(['/profile']);
-      }),
-      first());
+    this.snippetService.addSnippet(this.addSnippet.value).subscribe((data) => {
+      this.openModal();
+    })
   }
 }
