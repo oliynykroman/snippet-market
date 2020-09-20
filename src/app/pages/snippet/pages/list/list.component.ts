@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { SnippetsService } from 'src/app/services/snippets.service';
 import { SnippetModel } from 'src/app/models/snippet.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -10,16 +11,22 @@ import { SnippetModel } from 'src/app/models/snippet.model';
 export class ListComponent implements OnInit {
 
   error: string = null;
-  public snippetList: SnippetModel;
+  public snippetList$: Observable<SnippetModel>;
 
   constructor(private snippetsService: SnippetsService) { }
 
   ngOnInit(): void {
-    this.snippetsService.getSnippets(1).subscribe(data => this.snippetList = data);
+    this.getItems(1);
+  }
+
+  getItems(userId) {
+    this.snippetList$ = this.snippetsService.getSnippets(userId);
+
   }
   deleteItem(id) {
     this.snippetsService.deleteSnippet(id).subscribe({
       next(data) {
+
       },
       error(msg) {
         this.error = msg;
