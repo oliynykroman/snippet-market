@@ -4,6 +4,8 @@ import { SnippetModel } from 'src/app/models/snippet.model';
 import { Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { UserData } from 'src/app/models/user.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditComponent } from '../edit/edit.component';
 
 @Component({
   selector: 'app-list',
@@ -16,11 +18,11 @@ export class ListComponent implements OnInit {
   public snippetList: SnippetModel;
   public userId: number;
 
-  constructor(private snippetsService: SnippetsService, private userService: UserService) { }
+  constructor(private snippetsService: SnippetsService, private modalService: NgbModal, private userService: UserService) { }
 
   ngOnInit(): void {
     this.userId = this.userService.getUser();
-    this.getItems(this.userId );
+    this.getItems(this.userId);
 
   }
 
@@ -35,5 +37,11 @@ export class ListComponent implements OnInit {
       success => this.getItems(this.userId),
       error => alert(`Oooops something wrong: ${error}. Please try again later`)
     );
+  }
+
+  editItem(id) {
+    const modalRef = this.modalService.open(EditComponent);
+    modalRef.componentInstance.id = id;
+    // modalRef.result.then((result) => this.formAction(result));
   }
 }

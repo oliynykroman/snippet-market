@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit',
@@ -7,11 +8,13 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-  private id: number;
-  constructor(private route: ActivatedRoute, private router: Router) { }
+
+  @Input() id = null;
+
+  constructor(private route: ActivatedRoute, private router: Router, private activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
-    this.id = +this.route.snapshot.paramMap.get('id');
+
   }
 
 }

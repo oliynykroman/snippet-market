@@ -5,14 +5,11 @@ import { UserService } from 'src/app/services/user.service';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { Router } from '@angular/router';
-import { switchMap, first, tap } from 'rxjs/operators';
-import { SnippetModel } from 'src/app/models/snippet.model';
 
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss'],
-  providers: [NgbModal]
+  styleUrls: ['./add.component.scss']
 })
 export class AddComponent implements OnInit {
 
@@ -40,7 +37,16 @@ export class AddComponent implements OnInit {
   openModal() {
     const modalRef = this.modalService.open(ModalComponent);
     modalRef.componentInstance.title = "Congratulations!";
-    modalRef.componentInstance.title = "Snippet added succesfull.";
+    modalRef.componentInstance.body = "Snippet added succesfull.";
+    modalRef.componentInstance.closeButtonTitle = "Close and go to items list";
+    modalRef.componentInstance.confirmButtonTitle = "Add new item";
+    modalRef.result.then((result) => this.formAction(result));
+  }
+
+  formAction(result) {
+    if (result === 'close') {
+      this.router.navigate(['snippets']);
+    }
   }
 
   onSubmit() {

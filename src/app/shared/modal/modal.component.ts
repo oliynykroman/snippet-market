@@ -10,17 +10,21 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class ModalComponent implements OnInit {
   @Input() title;
   @Input() body;
-  @Input() buttonTitle: string = "Close";
+  @Input() closeButtonTitle: string = "Close";
+  @Input() confirmButtonTitle: string = "Confirm";
 
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
 
   }
-  close() {
-    this.activeModal.close('Close click');
+  confirm() {
+    this.activeModal.close('confirm');
   }
   dismiss() {
-    this.activeModal.dismiss('Cross click');
+    this.activeModal.close('dismiss');
+  }
+  close() {
+    this.activeModal.close('close');
   }
 }
