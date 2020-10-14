@@ -3,12 +3,174 @@
     {
       "id": 1,
       "email": "bruno@email.com",
-      "firstName":"Bruno",
-      "secondName":"Doe",
-      "gitProfile":"oliynykroman",
-      "avatar_url":"",
-      "public_repos":"",
-      "public_gists":""
+      "firstName": "Bruno",
+      "secondName": "Doe",
+      "gitProfile": "oliynykroman",
+      "avatar_url": "",
+      "public_repos": "",
+      "public_gists": ""
+    }
+  ],
+  "snippets": [
+    {
+      "title": "xsaxsa",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 1
+    },
+    {
+      "title": "xsaxsa",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 8
+    },
+    {
+      "title": "xsaxsa",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 10
+    },
+    {
+      "title": "",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 13
+    },
+    {
+      "title": "",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 14
+    },
+    {
+      "title": "xas",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 16
+    },
+    {
+      "title": "",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 17
+    },
+    {
+      "title": "",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 18
+    },
+    {
+      "title": "",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 19
+    },
+    {
+      "title": "",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 20
+    },
+    {
+      "title": "",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 21
+    },
+    {
+      "title": "",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 22
+    },
+    {
+      "title": "",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 23
+    },
+    {
+      "title": "",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 24
+    },
+    {
+      "title": "",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 25
+    },
+    {
+      "title": "",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 26
+    },
+    {
+      "title": "",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 27
+    },
+    {
+      "title": "",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 28
+    },
+    {
+      "title": "",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 29
+    },
+    {
+      "title": "",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 30
     }
   ]
 }
