@@ -4,7 +4,7 @@
   </div>
   <button routerLink="/snippets/add" type="button" class="btn btn-info col-4 col-md-2">Add new</button>
 </div>
-<div class="row" *ngIf="(snippetList$ | async) as snippetList">
+<div class="row" *ngIf="snippetList">
   <div *ngFor="let item of snippetList" class="col-6 col-md-4">
     <div class="card">
       <div class="card-body">

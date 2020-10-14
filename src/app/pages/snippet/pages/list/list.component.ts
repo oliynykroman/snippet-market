@@ -2,6 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@
 import { SnippetsService } from 'src/app/services/snippets.service';
 import { SnippetModel } from 'src/app/models/snippet.model';
 import { Observable } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
+import { UserData } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-list',
@@ -11,27 +13,27 @@ import { Observable } from 'rxjs';
 export class ListComponent implements OnInit {
 
   error: string = null;
-  public snippetList$: Observable<SnippetModel>;
+  public snippetList: SnippetModel;
+  public userId: number;
 
-  constructor(private snippetsService: SnippetsService) { }
+  constructor(private snippetsService: SnippetsService, private userService: UserService) { }
 
   ngOnInit(): void {
-    this.getItems(1);
+    this.userId = this.userService.getUser();
+    this.getItems(this.userId );
+
   }
 
   getItems(userId) {
-    this.snippetList$ = this.snippetsService.getSnippets(userId);
+    this.snippetsService.getSnippets(userId).subscribe(data => {
+      this.snippetList = data;
+    });
 
   }
   deleteItem(id) {
-    this.snippetsService.deleteSnippet(id).subscribe({
-      next(data) {
-
-      },
-      error(msg) {
-        this.error = msg;
-      }
-    });
+    this.snippetsService.deleteSnippet(id).subscribe(
+      success => this.getItems(this.userId),
+      error => alert(`Oooops something wrong: ${error}. Please try again later`)
+    );
   }
-
 }

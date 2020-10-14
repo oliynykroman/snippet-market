@@ -25,6 +25,7 @@ export class SnippetsService {
   public getSnippets(userId) {
     return this.http.get<SnippetModel>(`${api.userDataDomain}/snippets?userId=${userId}`).pipe(
       tap(
+        
         data => this.changeData(data)
       )
     );

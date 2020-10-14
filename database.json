@@ -13,18 +13,36 @@
   ],
   "snippets": [
     {
-      "title": "test",
-      "description": "test",
-      "lang": "Javascript",
-      "body": "testtesrn",
-      "id": 5
+      "title": "xsaxsa",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 1
+    },
+    {
+      "title": "xsaxsa",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 8
+    },
+    {
+      "title": "xsaxsa",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 10
     },
     {
       "title": "test",
-      "description": "test",
-      "lang": "Javascript",
-      "body": "testtesrn",
-      "id": 6
+      "description": "123`",
+      "userId": 1,
+      "lang": "TypeScript",
+      "body": "xas",
+      "id": 11
     }
   ]
 }
