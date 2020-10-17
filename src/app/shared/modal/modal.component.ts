@@ -11,7 +11,7 @@ export class ModalComponent implements OnInit {
   @Input() title;
   @Input() body;
   @Input() closeButtonTitle: string = "Close";
-  @Input() confirmButtonTitle: string = "Confirm";
+  @Input() confirmButtonTitle: string = null;
 
   constructor(public activeModal: NgbActiveModal) { }
 

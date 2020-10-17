@@ -52,6 +52,6 @@ export class AddComponent implements OnInit {
   onSubmit() {
     this.snippetService.addSnippet(this.addSnippet.value).subscribe((data) => {
       this.openModal();
-    })
+    });
   }
 }

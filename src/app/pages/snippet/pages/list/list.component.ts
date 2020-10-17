@@ -14,9 +14,9 @@ import { EditComponent } from '../edit/edit.component';
 })
 export class ListComponent implements OnInit {
 
-  error: string = null;
+  public error: string = null;
   public snippetList: SnippetModel;
-  public userId: number;
+  public userId: number = null;
 
   constructor(private snippetsService: SnippetsService, private modalService: NgbModal, private userService: UserService) { }
 

@@ -1,1 +1,34 @@
-<p>add-edit works!</p>
+<form [formGroup]="addSnippet" (ngSubmit)="submit()">
+    <!-- title -->
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" formControlName="title">
+        <div class="invalid-feedback">
+            Please enter string.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Snippet description</label>
+        <input type="text" class="form-control" id="description" formControlName="description">
+        <div class="invalid-feedback">
+            Please enter string.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="lang">Snippet language</label>
+        <select class="form-control" id="lang" formControlName="lang">
+            <option>Javascript</option>
+            <option>TypeScript</option>
+            <option>HTML</option>
+            <option>CSS</option>
+            <option>php</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="body">Sniipet:</label>
+        <textarea class="form-control" name="" id="body" cols="30" rows="10" formControlName="body"></textarea>
+    </div>
+    <button class="btn btn-lg btn-primary" type="submit">Save</button>
+</form>
