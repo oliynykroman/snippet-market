@@ -25,15 +25,18 @@ export class SnippetsService {
   public getSnippets(userId) {
     return this.http.get<SnippetModel>(`${api.userDataDomain}/snippets?userId=${userId}`).pipe(
       tap(
-        
         data => this.changeData(data)
       )
     );
   }
+  public getCurrentSnippet(userId, snippetId) {
+    console.log('xsxas');
+    return this.http.get<SnippetModel>(`${api.userDataDomain}/snippets?userId=${userId}&id=${snippetId}`);
+  }
   public addSnippet(data) {
     return this.http.post<SnippetModel>(`${api.userDataDomain}/snippets`, data);
   }
-  public editSnippet(id, data) {
+  public editSnippet(data, id) {
     return this.http.patch<SnippetModel>(`${api.userDataDomain}/snippets/${id}`, data);
   }
   public deleteSnippet(id) {

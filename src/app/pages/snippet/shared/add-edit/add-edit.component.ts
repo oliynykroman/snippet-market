@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SnippetsService } from 'src/app/services/snippets.service';
+import { SnippetModel } from 'src/app/models/snippet.model';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,13 +9,13 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./add-edit.component.scss']
 })
 export class AddEditComponent implements OnInit {
+  @Input() formData = new SnippetModel;
+  @Output() onSubmit = new EventEmitter<FormGroup>();
   public addSnippet: FormGroup;
-  example = { body: "" };
-  public snippet: any
-  constructor(private fb: FormBuilder,
-    private snippetService: SnippetsService,
-    private userService: UserService) 
-    { }
+
+  constructor(private fb: FormBuilder, private userService: UserService) {
+    //
+  }
 
   ngOnInit(): void {
     this.formInit();
@@ -30,10 +30,8 @@ export class AddEditComponent implements OnInit {
       body: this.fb.control('', Validators.required),
     });
   }
-  onSubmit() {
-    this.snippetService.addSnippet(this.addSnippet.value).subscribe((data) => {
-      console.log(data)
-    })
-  }
 
+  submit() {
+    this.onSubmit.emit(this.addSnippet);
+  }
 }
