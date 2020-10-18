@@ -29,7 +29,7 @@
     "angular2-jwt": "^0.2.3",
     "bootstrap": "^4.5.0",
     "codemirror": "^5.57.0",
-    "json-server": "^0.16.1",
+    "json-server": "^0.16.2",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
     "ngx-highlightjs": "^4.1.2",

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs';
 import { SnippetModel } from 'src/app/models/snippet.model';
 import { SnippetsService } from 'src/app/services/snippets.service';
 import { UserService } from 'src/app/services/user.service';
@@ -40,10 +41,7 @@ export class EditComponent implements OnInit {
   }
 
   getFormData() {
-    this.snippetService.getCurrentSnippet(this.userId, this.id).subscribe(data => {
-      this.formData = data;
-      console.log(this.formData);
-    });
+    this.snippetService.getCurrentSnippet(this.userId, this.id).subscribe(data => { this.formData = data; console.log(data) });
   }
 
   onSubmit($event) {
@@ -51,5 +49,4 @@ export class EditComponent implements OnInit {
       this.openModal();
     });
   }
-
 }

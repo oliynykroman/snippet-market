@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { SnippetModel } from '../models/snippet.model';
-import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { find, first, map, tap } from 'rxjs/operators';
+import { once } from 'process';
 const api = environment;
 @Injectable({
   providedIn: 'root'
@@ -29,9 +30,10 @@ export class SnippetsService {
       )
     );
   }
-  public getCurrentSnippet(userId, snippetId) {
-    console.log('xsxas');
-    return this.http.get<SnippetModel>(`${api.userDataDomain}/snippets?userId=${userId}&id=${snippetId}`);
+  public getCurrentSnippet(userId, snippetId): Observable<SnippetModel> {
+    return this.http.get<SnippetModel>(`${api.userDataDomain}/snippets?userId=${userId}&id=${snippetId}`).pipe(
+      first()
+    );
   }
   public addSnippet(data) {
     return this.http.post<SnippetModel>(`${api.userDataDomain}/snippets`, data);
@@ -42,4 +44,5 @@ export class SnippetsService {
   public deleteSnippet(id) {
     return this.http.delete<SnippetModel>(`${api.userDataDomain}/snippets/${id}`);
   }
+  
 }
