@@ -17,7 +17,7 @@ export class EditComponent implements OnInit {
   userId: number = null;
   formData: SnippetModel;
 
-  constructor(private snippetService: SnippetsService, private modalService: NgbModal, private userService: UserService) {
+  constructor(private snippetService: SnippetsService, private modalService: NgbModal, private userService: UserService, private activeModal: NgbActiveModal) {
     //
   }
 
@@ -31,21 +31,22 @@ export class EditComponent implements OnInit {
     modalRef.componentInstance.title = "Congratulations!";
     modalRef.componentInstance.body = "Snippet edited succesfull.";
     modalRef.componentInstance.closeButtonTitle = "Close";
-    modalRef.result.then((result) => this.formAction(result));
-  }
-
-  formAction(result) {
-    if (result === 'close') {
-      this.modalService.dismissAll()
-    }
+    modalRef.result.then((result) => {
+      console.log(result);
+      if (result === 'close') {
+        this.activeModal.close('close');
+      }
+    });
   }
 
   getFormData() {
-    this.snippetService.getCurrentSnippet(this.userId, this.id).subscribe(data => { this.formData = data; console.log(data) });
+    this.snippetService.getCurrentSnippet(this.userId, this.id).subscribe((data) => {
+      this.formData = data;
+    });
   }
 
   onSubmit($event) {
-    this.snippetService.editSnippet($event.value, this.id).subscribe((data) => {
+    this.snippetService.editSnippet($event.value, this.id).subscribe(() => {
       this.openModal();
     });
   }

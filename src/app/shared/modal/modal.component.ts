@@ -13,10 +13,12 @@ export class ModalComponent implements OnInit {
   @Input() closeButtonTitle: string = "Close";
   @Input() confirmButtonTitle: string = null;
 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(public activeModal: NgbActiveModal) { 
+    //
+  }
 
   ngOnInit(): void {
-
+    //
   }
   confirm() {
     this.activeModal.close('confirm');

@@ -10,6 +10,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditComponent } from './shared/add-edit/add-edit.component';
+import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 
 
 @NgModule({
@@ -26,10 +27,22 @@ import { AddEditComponent } from './shared/add-edit/add-edit.component';
     ReactiveFormsModule,
     FormsModule,
     CodemirrorModule,
+    HighlightModule
   ],
   providers: [
     NgbModal,
-    NgbActiveModal
+    NgbActiveModal,
+    {
+      provide: HIGHLIGHT_OPTIONS,
+      useValue: {
+        coreLibraryLoader: () => import('highlight.js/lib/core'),
+        languages: {
+          typescript: () => import('highlight.js/lib/languages/typescript'),
+          css: () => import('highlight.js/lib/languages/css'),
+          xml: () => import('highlight.js/lib/languages/xml')
+        }
+      }
+    }
   ]
 })
 export class SnippetModule { }

@@ -27,7 +27,7 @@ export class ListComponent implements OnInit {
   }
 
   getItems(userId) {
-    this.snippetsService.getSnippets(userId).subscribe(data => {
+    this.snippetsService.getAllSnippets(userId).subscribe(data => {
       this.snippetList = data;
     });
 
@@ -42,6 +42,12 @@ export class ListComponent implements OnInit {
   editItem(id) {
     const modalRef = this.modalService.open(EditComponent);
     modalRef.componentInstance.id = id;
-    // modalRef.result.then((result) => this.formAction(result));
+    modalRef.result.then((result) => {
+      if (result === 'close') {
+        this.getItems(this.userId);
+      } else {
+        alert(`Oooops something wrong. Please reload page manually`);
+      }
+    });
   }
 }
