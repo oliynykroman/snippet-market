@@ -13,27 +13,11 @@
   ],
   "snippets": [
     {
-      "title": "xsaxsa",
-      "description": "",
-      "userId": 1,
-      "lang": "",
-      "body": "",
-      "id": 1
-    },
-    {
-      "title": "xsaxsa",
-      "description": "rtyrt",
+      "title": "ggg",
+      "description": "gg",
       "userId": 1,
       "lang": "CSS",
-      "body": "rrhhr",
-      "id": 10
-    },
-    {
-      "title": "",
-      "description": "",
-      "userId": 1,
-      "lang": "",
-      "body": "",
+      "body": "gggxsa",
       "id": 29
     },
     {
@@ -43,14 +27,6 @@
       "lang": "",
       "body": "",
       "id": 30
-    },
-    {
-      "title": "222",
-      "description": "222",
-      "userId": 1,
-      "lang": "HTML",
-      "body": "1wdsd",
-      "id": 31
     },
     {
       "title": "dd",
@@ -69,28 +45,20 @@
       "id": 33
     },
     {
-      "title": "xas",
-      "description": "xsax",
-      "userId": 1,
-      "lang": "HTML",
-      "body": "xas",
-      "id": 34
-    },
-    {
-      "title": "rferf",
-      "description": "frrfe",
-      "userId": 1,
-      "lang": "HTML",
-      "body": "rfe",
-      "id": 35
-    },
-    {
       "title": "Demo snippet",
       "description": "demo for highlighter",
       "userId": 1,
       "lang": "Javascript",
       "body": "function myFunction() {\n    document.getElementById(\"demo1\").innerHTML = \"Hello there!\";\n    document.getElementById(\"demo2\").innerHTML = \"How are you?\";",
       "id": 36
+    },
+    {
+      "title": "SOD-205 grid, some changes, added new password functionality",
+      "description": "sqa",
+      "userId": 1,
+      "lang": "CSS",
+      "body": "sasa",
+      "id": 37
     }
   ]
 }
