@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HighlightResult } from 'ngx-highlightjs';
 import { Observable } from 'rxjs';
 import { SnippetModel } from 'src/app/models/snippet.model';
 import { SnippetsService } from 'src/app/services/snippets.service';
 import { UserService } from 'src/app/services/user.service';
-import { SnippetModule } from '../../snippet.module';
+import { ModalComponent } from 'src/app/shared/modal/modal.component';
+import { EditComponent } from '../edit/edit.component';
 
 @Component({
   selector: 'app-details',
@@ -17,24 +19,26 @@ export class DetailsComponent implements OnInit {
 
   snippet: Observable<SnippetModel>;
   userId: number;
-  routeId: number;
+  snippetId: number;
   response: HighlightResult;
 
-  code = `function myFunction() {
-    document.getElementById("demo1").innerHTML = "Hello there!";
-    document.getElementById("demo2").innerHTML = "How are you?";
-  }`
-
-
-  constructor(private userService: UserService, private snippetService: SnippetsService, private route: ActivatedRoute) { }
+  constructor(
+    private userService: UserService,
+    private snippetService: SnippetsService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private modalService: NgbModal
+  ) {
+    //
+  }
 
   ngOnInit(): void {
     this.userId = this.userService.getUser();
-    this.routeId = this.route.snapshot.params.id;
-    this.getSnippet(this.userId, this.routeId);
+    this.snippetId = this.route.snapshot.params.id;
+    this.getSnippet(this.userId, this.snippetId);
   }
-  getSnippet(userId, routeId) {
-    this.snippet = this.snippetService.getCurrentSnippet(userId, routeId);
+  getSnippet(userId, snippetId) {
+    this.snippet = this.snippetService.getCurrentSnippet(userId, snippetId);
   }
   onHighlight(e) {
     this.response = {
@@ -44,6 +48,32 @@ export class DetailsComponent implements OnInit {
       top: '{...}',
       value: '{...}'
     }
+  }
+  deleteItem() {
+    const modalRef = this.modalService.open(ModalComponent);
+    modalRef.componentInstance.title = 'Delete confirmation';
+    modalRef.componentInstance.body = `Do you really want to delete snippet id: ${this.snippetId}`;
+    modalRef.componentInstance.confirmButtonTitle = `Delete`;
+    modalRef.result.then((result) => {
+      if (result === 'confirm') {
+        this.snippetService.deleteSnippet(this.snippetId);
+        this.router.navigate(['snippets'])
+      } else {
+        alert(`Oooops something wrong. Please reload page manually`);
+      }
+    });
+  }
+
+  editItem(id) {
+    const modalRef = this.modalService.open(EditComponent);
+    modalRef.componentInstance.id = id;
+    modalRef.result.then((result) => {
+      if (result === 'close') {
+        this.getSnippet(this.userId, this.snippetId);
+      } else {
+        alert(`Oooops something wrong. Please reload page manually`);
+      }
+    });
   }
 
 }
