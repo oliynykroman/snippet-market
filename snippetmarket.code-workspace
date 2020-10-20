@@ -17,6 +17,10 @@
 			{
 				"name": "feature/auth",
 				"base": "develop"
+			},
+			{
+				"name": "feature/snippets-flow",
+				"base": "develop"
 			}
 		]
 	}

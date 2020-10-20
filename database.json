@@ -3,12 +3,62 @@
     {
       "id": 1,
       "email": "bruno@email.com",
-      "firstName":"Bruno",
-      "secondName":"Doe",
-      "gitProfile":"oliynykroman",
-      "avatar_url":"",
-      "public_repos":"",
-      "public_gists":""
+      "firstName": "Bruno",
+      "secondName": "Doe",
+      "gitProfile": "oliynykroman",
+      "avatar_url": "",
+      "public_repos": "",
+      "public_gists": ""
+    }
+  ],
+  "snippets": [
+    {
+      "title": "ggg",
+      "description": "gg",
+      "userId": 1,
+      "lang": "CSS",
+      "body": "gggxsa",
+      "id": 29
+    },
+    {
+      "title": "",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 30
+    },
+    {
+      "title": "dd",
+      "description": "dwdw",
+      "userId": 1,
+      "lang": "TypeScript",
+      "body": "dw",
+      "id": 32
+    },
+    {
+      "title": "sxa",
+      "description": "xsax",
+      "userId": 1,
+      "lang": "HTML",
+      "body": "xsxa",
+      "id": 33
+    },
+    {
+      "title": "Demo snippet",
+      "description": "demo for highlighter",
+      "userId": 1,
+      "lang": "Javascript",
+      "body": "function myFunction() {\n    document.getElementById(\"demo1\").innerHTML = \"Hello there!\";\n    document.getElementById(\"demo2\").innerHTML = \"How are you?\";",
+      "id": 36
+    },
+    {
+      "title": "SOD-205 grid, some changes, added new password functionality",
+      "description": "sqa",
+      "userId": 1,
+      "lang": "CSS",
+      "body": "sasa",
+      "id": 37
     }
   ]
 }

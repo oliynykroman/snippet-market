@@ -1,1 +1,21 @@
-<p>details works!</p>
+<ng-container *ngFor="let item of snippet | async">
+    <div class="row">
+        <h3 class="w-100 display-4 text-center">{{item.title}}</h3>
+        <p class="w-100 m-t-2 text-center font-weight-lighter">{{item.description}}</p>
+        <div class="m-auto alert alert-primary" role="alert">{{item.lang}}</div>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-12 mt-5">
+            <h4 class="display-5">Details:</h4>
+            <pre><code [highlight]="item.body" (highlighted)="onHighlight($event)"></code></pre>
+        </div>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-12 mt-5">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-light" (click)="editItem(item.id)">Edit</button>
+                <button type="button" class="btn btn-danger" (click)="deleteItem()">Delete</button>
+            </div>
+        </div>
+    </div>
+</ng-container>

@@ -1,8 +1,8 @@
-export class Snippet {
+export class SnippetModel {
+    "id": number;
     "userId": number;
-    "snippetId": number;
     "title": string;
     "lang": string;
     "description": string;
-    "snippet": string;
+    "body": string;
 }
