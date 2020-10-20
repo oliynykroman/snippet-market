@@ -28,6 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public checkUserState() {
     this.subscription = this.userService.isUserLogged().subscribe((data) => {
+      console.log(data);
       this.isLogged = data;
     });
   }

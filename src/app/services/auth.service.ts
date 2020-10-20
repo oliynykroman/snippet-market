@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap, first, switchMap } from 'rxjs/operators';
 import { LocalStorageService } from './local-storage.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 const api = environment;
 
 @Injectable({
@@ -14,12 +15,19 @@ const api = environment;
 })
 export class AuthService {
 
-  constructor(private storage: StorageMap, private router: Router, private http: HttpClient, private localStorage: LocalStorageService) { }
-  // apiDomain
+  constructor(
+    private storage: StorageMap,
+    private router: Router,
+    private http: HttpClient,
+    private localStorageService: LocalStorageService,
+    private jwtHelper: JwtHelperService
+  ) {
+    //
+  }
 
   public login(formData): Observable<any> {
     return this.http.post<any>(`${api.apiAuthDomain}/auth/login`, formData).pipe(
-      switchMap((resp) => this.localStorage.saveToken(resp)),
+      switchMap((resp) => this.localStorageService.saveToken(resp)),
       tap(() => {
         this.router.navigate(['/profile']);
       }),
@@ -35,5 +43,14 @@ export class AuthService {
         console.log(error);
       }
     });
+  }
+
+  public isTokenExpired() {
+    const token = this.localStorageService.authTokenF();
+    if (this.jwtHelper.isTokenExpired(token)) {
+      console.log('not expired');
+    } else {
+      console.log('expired');
+    }
   }
 }
