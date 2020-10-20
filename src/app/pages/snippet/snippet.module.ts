@@ -10,7 +10,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEditComponent } from './shared/add-edit/add-edit.component';
-
+import { HighlightModule } from 'ngx-highlightjs';
+import { DetailsComponent } from './pages/details/details.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AddEditComponent } from './shared/add-edit/add-edit.component';
     AddComponent,
     EditComponent,
     ListComponent,
-    AddEditComponent
+    AddEditComponent,
+    DetailsComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +28,7 @@ import { AddEditComponent } from './shared/add-edit/add-edit.component';
     ReactiveFormsModule,
     FormsModule,
     CodemirrorModule,
+    HighlightModule
   ],
   providers: [
     NgbModal,

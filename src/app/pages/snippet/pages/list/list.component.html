@@ -7,14 +7,20 @@
 <div class="row" *ngIf="snippetList">
   <div *ngFor="let item of snippetList" class="col-6 col-md-4">
     <div class="card">
+      <div class="card-header"><span class="text-muted">Lang: </span>{{item.lang}}</div>
+      <button type="button" class="close" aria-label="Close" (click)="deleteItem(item.id)">
+        <span aria-hidden="true">&times;</span>
+      </button>
       <div class="card-body">
-        <h5 class="card-title">{{item.title}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{item.lang}}</h6>
-        <p class="card-text">{{item.description}}</p>
+        <h5 class="card-title">
+          {{item.title}}
+        </h5>
+        <p class="card-text">
+          {{item.description}}
+        </p>
         <div class="btn-group" role="group" aria-label="Snippet actions">
-          <button type="button" class="btn btn-primary" (click)="editItem(item.id)">Edit snippet</button>
-          <!-- <button type="button" class="btn btn-primary" [routerLink]="['/snippets/edit', item.id]" >Edit snippet</button> -->
-          <button type=" button" class="btn btn-danger" (click)="deleteItem(item.id)">Delete snippet</button>
+          <button type="button" class="btn btn-light" (click)="editItem(item.id)">Edit</button>
+          <a class="btn btn-info" [routerLink]="['/snippets/details', item.id]">Details</a>
         </div>
       </div>
     </div>

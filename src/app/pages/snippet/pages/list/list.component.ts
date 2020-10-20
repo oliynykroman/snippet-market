@@ -1,9 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SnippetsService } from 'src/app/services/snippets.service';
 import { SnippetModel } from 'src/app/models/snippet.model';
-import { Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
-import { UserData } from 'src/app/models/user.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditComponent } from '../edit/edit.component';
 
@@ -23,11 +21,10 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.userService.getUser();
     this.getItems(this.userId);
-
   }
 
   getItems(userId) {
-    this.snippetsService.getSnippets(userId).subscribe(data => {
+    this.snippetsService.getAllSnippets(userId).subscribe(data => {
       this.snippetList = data;
     });
 
@@ -42,6 +39,12 @@ export class ListComponent implements OnInit {
   editItem(id) {
     const modalRef = this.modalService.open(EditComponent);
     modalRef.componentInstance.id = id;
-    // modalRef.result.then((result) => this.formAction(result));
+    modalRef.result.then((result) => {
+      if (result === 'close') {
+        this.getItems(this.userId);
+      } else {
+        alert(`Oooops something wrong. Please reload page manually`);
+      }
+    });
   }
 }

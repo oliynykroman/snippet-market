@@ -21,92 +21,12 @@
       "id": 1
     },
     {
-      "title": "xxxx",
-      "description": "",
-      "userId": 1,
-      "lang": "",
-      "body": "",
-      "id": 8
-    },
-    {
       "title": "xsaxsa",
-      "description": "",
+      "description": "rtyrt",
       "userId": 1,
-      "lang": "",
-      "body": "",
+      "lang": "CSS",
+      "body": "rrhhr",
       "id": 10
-    },
-    {
-      "title": "",
-      "description": "",
-      "userId": 1,
-      "lang": "",
-      "body": "",
-      "id": 13
-    },
-    {
-      "title": "",
-      "description": "",
-      "userId": 1,
-      "lang": "",
-      "body": "",
-      "id": 21
-    },
-    {
-      "title": "",
-      "description": "",
-      "userId": 1,
-      "lang": "",
-      "body": "",
-      "id": 22
-    },
-    {
-      "title": "",
-      "description": "",
-      "userId": 1,
-      "lang": "",
-      "body": "",
-      "id": 23
-    },
-    {
-      "title": "",
-      "description": "",
-      "userId": 1,
-      "lang": "",
-      "body": "",
-      "id": 24
-    },
-    {
-      "title": "",
-      "description": "",
-      "userId": 1,
-      "lang": "",
-      "body": "",
-      "id": 25
-    },
-    {
-      "title": "",
-      "description": "",
-      "userId": 1,
-      "lang": "",
-      "body": "",
-      "id": 26
-    },
-    {
-      "title": "",
-      "description": "",
-      "userId": 1,
-      "lang": "",
-      "body": "",
-      "id": 27
-    },
-    {
-      "title": "",
-      "description": "",
-      "userId": 1,
-      "lang": "",
-      "body": "",
-      "id": 28
     },
     {
       "title": "",
@@ -128,7 +48,7 @@
       "title": "222",
       "description": "222",
       "userId": 1,
-      "lang": "Javascript",
+      "lang": "HTML",
       "body": "1wdsd",
       "id": 31
     },
@@ -155,6 +75,22 @@
       "lang": "HTML",
       "body": "xas",
       "id": 34
+    },
+    {
+      "title": "rferf",
+      "description": "frrfe",
+      "userId": 1,
+      "lang": "HTML",
+      "body": "rfe",
+      "id": 35
+    },
+    {
+      "title": "Demo snippet",
+      "description": "demo for highlighter",
+      "userId": 1,
+      "lang": "Javascript",
+      "body": "function myFunction() {\n    document.getElementById(\"demo1\").innerHTML = \"Hello there!\";\n    document.getElementById(\"demo2\").innerHTML = \"How are you?\";",
+      "id": 36
     }
   ]
 }
