@@ -1,9 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SnippetsService } from 'src/app/services/snippets.service';
 import { SnippetModel } from 'src/app/models/snippet.model';
-import { Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
-import { UserData } from 'src/app/models/user.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditComponent } from '../edit/edit.component';
 
@@ -23,7 +21,6 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.userService.getUser();
     this.getItems(this.userId);
-
   }
 
   getItems(userId) {

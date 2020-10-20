@@ -20,7 +20,7 @@
         </p>
         <div class="btn-group" role="group" aria-label="Snippet actions">
           <button type="button" class="btn btn-light" (click)="editItem(item.id)">Edit</button>
-          <button type=" button" class="btn btn-info" [routerLink]="['/snippets/details', item.id]">Details</button>
+          <a class="btn btn-info" [routerLink]="['/snippets/details', item.id]">Details</a>
         </div>
       </div>
     </div>
