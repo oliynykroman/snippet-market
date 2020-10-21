@@ -16,6 +16,7 @@ export class LocalStorageService {
     ).subscribe((authToken: string) => {
       this.authToken = authToken;
     });
+
   }
 
   public saveToken(resp): Observable<any> {

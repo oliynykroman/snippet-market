@@ -28,9 +28,18 @@ export class UserService {
 
   public getUser() {
     const token = this.localStorageService.authTokenF();
-    var decoded = jwt_decode(token);
+    try {
+      const decoded = jwt_decode(token);
 
-    return decoded.userId;
+      console.log('aaaa');
+      return decoded.userId;
+      // valid token format
+    } catch (error) {
+      // invalid token format
+      console.log('cdscds');
+    }
+
+
   }
 
   public getUserInfo(userId) {

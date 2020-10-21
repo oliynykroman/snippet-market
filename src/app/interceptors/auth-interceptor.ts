@@ -14,7 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 Authorization: `${this.localStorage.authTokenF()}`
             }
         });
-
+        console.log(req);
         return next.handle(req);
     }
 }
