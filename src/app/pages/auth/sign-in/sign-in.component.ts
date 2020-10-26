@@ -47,7 +47,7 @@ export class SignInComponent implements OnInit {
   public submit(): void {
     this.authService.login(this.loginForm.value).subscribe({
       error: (err) => {
-        this.errorMessage = err;
+        this.errorMessage = err.error.message;
       }
     });
     this.loginForm.reset();

@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { map, first, tap, filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +16,7 @@ export class LocalStorageService {
     ).subscribe((authToken: string) => {
       this.authToken = authToken;
     });
+
   }
 
   public saveToken(resp): Observable<any> {

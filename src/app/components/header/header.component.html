@@ -3,16 +3,19 @@
         <a href="/">
             <h5 class="my-0 mr-md-auto font-weight-bold text-uppercase">Snippet market</h5>
         </a>
-        <div *ngIf="isUserLogged" class="d-flex flex-row flex-nowrap align-items-center">
+        <div *ngIf="isUserLogged$ | async as isLogged; else isNotLogged"
+            class="d-flex flex-row flex-nowrap align-items-center">
             <nav class="my-2 my-md-0">
                 <a routerLink="/snippets" class="btn btn-primary" routerLinkActive="active">Snippets</a>
             </nav>
             <a class="btn btn-outline-primary ml-3" routerLink="/profile" routerLinkActive="active">Profile</a>
             <a class="ml-3" routerLink="/" (click)="logout()">Logout</a>
         </div>
-        <nav *ngIf="!isUserLogged">
-            <a class="btn btn-outline-primary" routerLink="/login" routerLinkActive="active">Sign in</a>
-            <a class="btn btn-outline-primary ml-3" routerLink="/registration" routerLinkActive="active">Sign up</a>
-        </nav>
+        <ng-template #isNotLogged>
+            <nav>
+                <a class="btn btn-outline-primary" routerLink="/login" routerLinkActive="active">Sign in</a>
+                <a class="btn btn-outline-primary ml-3" routerLink="/registration" routerLinkActive="active">Sign up</a>
+            </nav>
+        </ng-template>
     </div>
 </header>

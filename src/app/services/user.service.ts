@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
-import {UserData} from '../models/user.model';
+import { UserData } from '../models/user.model';
 
 
 const api = environment;
@@ -26,16 +26,26 @@ export class UserService {
     return this.http.post<any>(`${api.apiAuthDomain}/auth/register`, formData);
   }
 
-  public getUser()  {
+  public getUser() {
     const token = this.localStorageService.authTokenF();
-    var decoded = jwt_decode(token);
-    return decoded.userId;
+    try {
+      const decoded = jwt_decode(token);
+
+      console.log('aaaa');
+      return decoded.userId;
+      // valid token format
+    } catch (error) {
+      // invalid token format
+      console.log('cdscds');
+    }
+
+
   }
 
-  public getUserInfo(userId){
+  public getUserInfo(userId) {
     return this.http.get<UserData>(`${api.userDataDomain}/users/${userId}`);
-  }  
-  public getGitData(name){
-    return this.http.get<UserData>(`https://api.github.com/users/${name}`); 
-  }  
+  }
+  public getGitData(name) {
+    return this.http.get<UserData>(`https://api.github.com/users/${name}`);
+  }
 }

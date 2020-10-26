@@ -8,27 +8,11 @@ import { Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
-  public isLogged: boolean = false;
-  public subscription: Subscription;
-  constructor(private userService: UserService, private router: Router) { }
+export class AppComponent implements OnInit {
+  constructor(private userService: UserService, private router: Router) {
+    //
+  }
   ngOnInit() {
-
-    this.checkUserState();
-
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        this.checkUserState();
-      }
-    });
-  }
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
-  public checkUserState() {
-    this.subscription = this.userService.isUserLogged().subscribe((data) => {
-      this.isLogged = data;
-    });
+    //
   }
 }

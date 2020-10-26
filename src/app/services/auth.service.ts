@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { User } from '../models/user.model';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -14,12 +13,18 @@ const api = environment;
 })
 export class AuthService {
 
-  constructor(private storage: StorageMap, private router: Router, private http: HttpClient, private localStorage: LocalStorageService) { }
-  // apiDomain
+  constructor(
+    private storage: StorageMap,
+    private router: Router,
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
+  ) {
+    //
+  }
 
   public login(formData): Observable<any> {
     return this.http.post<any>(`${api.apiAuthDomain}/auth/login`, formData).pipe(
-      switchMap((resp) => this.localStorage.saveToken(resp)),
+      switchMap((resp) => this.localStorageService.saveToken(resp)),
       tap(() => {
         this.router.navigate(['/profile']);
       }),
