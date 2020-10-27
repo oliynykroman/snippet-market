@@ -3,7 +3,6 @@ import { UserService } from 'src/app/services/user.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
-import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,13 +13,15 @@ export class HeaderComponent implements OnInit {
 
   public isUserLogged$: Observable<boolean>;
 
-  constructor(private authService: AuthService, private userService: UserService, private router: Router) {
+  constructor(private authService: AuthService, private localStorageService: LocalStorageService) {
     //
   }
 
   ngOnInit(): void {
-    this.isUserLogged$ = this.userService.isUserLogged();
+    //
   }
+
+
   public logout() {
     this.authService.logout();
   }

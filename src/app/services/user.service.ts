@@ -18,28 +18,12 @@ export class UserService {
   constructor(private localStorageService: LocalStorageService, private http: HttpClient, private router: Router) { }
 
 
-  public isUserLogged(): Observable<boolean> {
-    return this.localStorageService.checkToken();
-  }
-
   public registration(formData): Observable<any> {
     return this.http.post<any>(`${api.apiAuthDomain}/auth/register`, formData);
   }
 
-  public getUser() {
-    const token = this.localStorageService.authTokenF();
-    try {
-      const decoded = jwt_decode(token);
-
-      console.log('aaaa');
-      return decoded.userId;
-      // valid token format
-    } catch (error) {
-      // invalid token format
-      console.log('cdscds');
-    }
-
-
+  public getUser(){
+    return 1;
   }
 
   public getUserInfo(userId) {

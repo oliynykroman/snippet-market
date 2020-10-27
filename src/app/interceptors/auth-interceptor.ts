@@ -11,7 +11,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
         req = req.clone({
             setHeaders: {
-                Authorization: `${this.localStorage.authTokenF()}`
+                Authorization: `token`
             }
         });
         console.log(req);
