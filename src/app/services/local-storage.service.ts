@@ -10,13 +10,20 @@ import { Router } from '@angular/router';
 export class LocalStorageService {
   public authToken: string = '';
 
+
+  private isTokenExist = new BehaviorSubject<boolean>(false);
+  data = this.isTokenExist.asObservable();
+
   constructor(private storage: StorageMap, private router: Router) {
-
+    this.checkToken();
   }
-
-  public saveToken(resp): Observable<string> {
+  /**
+   * Save token in local storage
+   * @param resp 
+   */
+  public saveToken(token): Observable<string> {
     return new Observable((observer) => {
-      this.storage.set('access_token', resp.access_token).subscribe((data) => {
+      this.storage.set('access_token', token.access_token).subscribe((data) => {
         observer.next(data);
         observer.complete();
       },
@@ -28,13 +35,16 @@ export class LocalStorageService {
     });
   }
 
+  /**
+   * Check token ixist in local storage
+   */
   public checkToken() {
-   return this.storage.get('access_token').pipe(
+    return this.storage.watch('access_token').pipe(
       map((data) => {
         if (data !== undefined) {
-          return true;
+         return true;
         }
-        return false;
+       return false
       }
       ));
   }

@@ -11,6 +11,10 @@ import { map, first } from 'rxjs/operators';
 export class AuthGuard implements CanActivate {
   constructor(public authService: AuthService, public router: Router, private localStorage: LocalStorageService) { }
   canActivate(router: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    if (true) {
+      return true;
+    }
+    this.router.navigate(['/login']);
     return false;
   }
 }

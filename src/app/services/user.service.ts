@@ -15,14 +15,9 @@ const api = environment;
 })
 export class UserService {
 
-  constructor(private localStorageService: LocalStorageService, private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
 
-
-  public registration(formData): Observable<any> {
-    return this.http.post<any>(`${api.apiAuthDomain}/auth/register`, formData);
-  }
-
-  public getUser(){
+  public getUser() {
     return 1;
   }
 
