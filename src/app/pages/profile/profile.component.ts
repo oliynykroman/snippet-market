@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { PasswordCheckValidator } from 'src/app/helpers/pasword-check.validators';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { UserData } from 'src/app/models/user.model';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
@@ -12,21 +12,24 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  public userId;
-  public userInfo: UserData;
+  public userInfo$:Observable<UserData>;
   public userGitInfo;
   public isPasswordChange = false;
   public error: string = null;
   public profileForm: FormGroup;
 
-  private subscription: Subscription;
-
-  constructor(private fb: FormBuilder, private userService: UserService, private localStorage: LocalStorageService) { }
+  constructor(private fb: FormBuilder, private userService: UserService) { }
 
   ngOnInit(): void {
     this.formInit();
-    this.userId = this.userService.getUser();
-    this.localStorage.tokenUserInfo();
+    this.userService.getUserData().subscribe((data) =>{
+      this.profileForm.patchValue({
+        firstName: data.firstName,
+        secondName: data.secondName,
+        email: data.email,
+        gitProfile: data.gitProfile
+      });
+    });
   }
 
   /**
@@ -36,8 +39,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
    * @memberof ProfileComponent
    */
   getGitData(userName) {
-    this.userService.getGitData(userName);
+    // this.userService.getGitData(userName);
   }
+
+
 
   formInit() {
     this.profileForm = this.fb.group({
@@ -79,7 +84,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
 }

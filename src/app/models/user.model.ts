@@ -5,7 +5,7 @@ export class User {
 }
 export class UserData extends User {
     secondName: string;
-    fisrtName: string;
+    firstName: string;
     gitProfile: string;
 }
 export class UserGitData extends UserData {
