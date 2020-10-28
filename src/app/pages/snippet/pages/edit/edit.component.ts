@@ -14,7 +14,6 @@ import { ModalComponent } from 'src/app/shared/modal/modal.component';
 export class EditComponent implements OnInit {
 
   @Input() id = null;
-  userId: number = null;
   formData: SnippetModel;
 
   constructor(private snippetService: SnippetsService, private modalService: NgbModal, private userService: UserService, private activeModal: NgbActiveModal) {
@@ -22,7 +21,6 @@ export class EditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userId = this.userService.getUser();
     this.getFormData();
   }
 
@@ -40,7 +38,7 @@ export class EditComponent implements OnInit {
   }
 
   getFormData() {
-    this.snippetService.getCurrentSnippet(this.userId, this.id).subscribe((data) => {
+    this.snippetService.getCurrentSnippet(this.id).subscribe((data) => {
       this.formData = data;
     });
   }

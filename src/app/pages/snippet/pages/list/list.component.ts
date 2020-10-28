@@ -19,19 +19,18 @@ export class ListComponent implements OnInit {
   constructor(private snippetsService: SnippetsService, private modalService: NgbModal, private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userId = this.userService.getUser();
-    this.getItems(this.userId);
+    this.getItems();
   }
 
-  getItems(userId) {
-    this.snippetsService.getAllSnippets(userId).subscribe(data => {
+  getItems() {
+    this.snippetsService.getAllSnippets().subscribe(data => {
       this.snippetList = data;
     });
 
-  }
+  } 
   deleteItem(id) {
     this.snippetsService.deleteSnippet(id).subscribe(
-      success => this.getItems(this.userId),
+      success => this.getItems(),
       error => alert(`Oooops something wrong: ${error}. Please try again later`)
     );
   }
@@ -41,7 +40,7 @@ export class ListComponent implements OnInit {
     modalRef.componentInstance.id = id;
     modalRef.result.then((result) => {
       if (result === 'close') {
-        this.getItems(this.userId);
+        this.getItems();
       } else {
         alert(`Oooops something wrong. Please reload page manually`);
       }

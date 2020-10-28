@@ -5,19 +5,24 @@ import { SnippetModel } from '../models/snippet.model';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { find, first, map, tap } from 'rxjs/operators';
 import { once } from 'process';
+import { UserService } from './user.service';
 const api = environment;
 @Injectable({
   providedIn: 'root'
 })
 export class SnippetsService {
 
-  constructor(private http: HttpClient) { }
+  private userId: number = null
 
-  public getAllSnippets(userId) {
-    return this.http.get<SnippetModel>(`${api.userDataDomain}/snippets?userId=${userId}`);
+  constructor(private http: HttpClient, private userService: UserService) {
+    this.userId = this.userService.getUser().userId;
   }
-  public getCurrentSnippet(userId, snippetId): Observable<SnippetModel> {
-    return this.http.get<SnippetModel>(`${api.userDataDomain}/snippets?userId=${userId}&id=${snippetId}`).pipe(
+
+  public getAllSnippets() {
+    return this.http.get<SnippetModel>(`${api.userDataDomain}/snippets?userId=${this.userId}`);
+  }
+  public getCurrentSnippet(snippetId): Observable<SnippetModel> {
+    return this.http.get<SnippetModel>(`${api.userDataDomain}/snippets?userId=${this.userId}&id=${snippetId}`).pipe(
       first()
     );
   }
