@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 import { PasswordCheckValidator } from 'src/app/helpers/pasword-check.validators';
 import { Subscription } from 'rxjs';
 import { UserData } from 'src/app/models/user.model';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-profile',
@@ -20,23 +21,22 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
 
-  constructor(private fb: FormBuilder, private userService: UserService) { }
+  constructor(private fb: FormBuilder, private userService: UserService, private localStorage: LocalStorageService) { }
 
   ngOnInit(): void {
     this.formInit();
     this.userId = this.userService.getUser();
-    this.subscription = this.userService.getUserInfo(this.userId).subscribe((data) => { this.userInfo = data },
-      error => this.error = error.status);
-    console.log('user info', this.userInfo);
-
+    this.localStorage.tokenUserInfo();
   }
 
-  // will get git data
-  getGitData(gitUrl) {
-    if (gitUrl) {
-      this.subscription = this.userService.getGitData(gitUrl).subscribe((data) => { this.userGitInfo = data; console.log(data) },
-        error => this.error = error.status);
-    }
+  /**
+   *get data from GIThub
+   *
+   * @param {*} gitUrl
+   * @memberof ProfileComponent
+   */
+  getGitData(userName) {
+    this.userService.getGitData(userName);
   }
 
   formInit() {

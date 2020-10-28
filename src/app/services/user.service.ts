@@ -15,14 +15,19 @@ const api = environment;
 })
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private localStorage: LocalStorageService) { }
 
   public getUser() {
-    return 1;
+
+
+
+    const token = this.localStorage.getTokenData();
+    console.log('token ', token);
+    return jwt_decode(token);
   }
 
-  public getUserInfo(userId) {
-    return this.http.get<UserData>(`${api.userDataDomain}/users/${userId}`);
+  public getUserInfo() {
+    return this.http.get<UserData>(`${api.userDataDomain}/users/${this.getUser()}`);
   }
   public getGitData(name) {
     return this.http.get<UserData>(`https://api.github.com/users/${name}`);

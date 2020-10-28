@@ -1,26 +1,30 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PasswordStrengthValidator } from 'src/app/helpers/pasword-sterngth.validators';
-import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
+import { AuthService } from 'src/app/services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, OnDestroy {
   public errorMessage: string;
   public successMessage: string;
   public registrationForm: FormGroup;
-  @Output() closeResult: EventEmitter<boolean> = new EventEmitter();
-  result: any;
+  public subscription = new Subscription();
 
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router, private modalService: NgbModal) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private modalService: NgbModal) { }
 
-  public formInit() {
+  ngOnInit(): void {
+    this.formInit();
+  }
+
+  formInit() {
     this.registrationForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
@@ -32,44 +36,31 @@ export class SignUpComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-    this.formInit();
-    const modalRef = this.modalService.open(ModalComponent,);
-    modalRef.componentInstance.title = "Congratulations!";
-    modalRef.componentInstance.body = "Registration successfull!. Please login for using service. Thank you.";
-    
-    modalRef.result.then(
-      (result) => {
-        this.result = result;
-        result == 'OK' ? this.closeResult.emit(true) : this.closeResult.emit(false);
-        console.log(result);
-      },
-      (reason) => {
-        this.result = reason;
-        this.closeResult.emit(false);
-        console.log(reason);
-      }
-    );
-
-
-  }
 
   get f() {
     return this.registrationForm.controls;
   }
-  public onSubmit(): void {
-    this.userService.registration(this.registrationForm.value).subscribe({
+  onSubmit(): void {
+    this.subscription = this.authService.registration(this.registrationForm.value).subscribe({
       next: () => {
         const modalRef = this.modalService.open(ModalComponent);
         modalRef.componentInstance.title = "Congratulations!";
-        modalRef.componentInstance.title = "Registration successfull!. Please login for using service. Thank you.";
-
-        // this.router.navigate(['/login']);
+        modalRef.componentInstance.body = "Registration successfull!. Please login for using service. Thank you.";
+        modalRef.result.then((result) => {
+          if (result === 'close') {
+            this.router.navigate(['/login']);
+          }
+        }
+        )
       },
       error: (err) => {
         this.errorMessage = err.error.message;
       }
     });
     this.registrationForm.reset();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

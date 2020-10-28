@@ -1,18 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { StorageMap } from '@ngx-pwa/local-storage';
-import { map, first, tap, filter } from 'rxjs/operators';
+import { map, first, tap, filter, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
-  public authToken: string = '';
-
-
-  private isTokenExist = new BehaviorSubject<boolean>(false);
-  data = this.isTokenExist.asObservable();
+  public authToken;
 
   constructor(private storage: StorageMap, private router: Router) {
     this.checkToken();
@@ -41,11 +37,15 @@ export class LocalStorageService {
   public checkToken() {
     return this.storage.watch('access_token').pipe(
       map((data) => {
+        this.authToken = data; 
         if (data !== undefined) {
-         return true;
+          return true;
         }
-       return false
-      }
-      ));
+        return false
+      }))
+  }
+
+  public getTokenData() {
+    return this.authToken;
   }
 }
