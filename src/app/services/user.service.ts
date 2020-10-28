@@ -15,19 +15,19 @@ const api = environment;
 })
 export class UserService {
 
-  constructor(private localStorageService: LocalStorageService, private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private localStorage: LocalStorageService) { }
+
+  public getUser() {
 
 
-  public registration(formData): Observable<any> {
-    return this.http.post<any>(`${api.apiAuthDomain}/auth/register`, formData);
+
+    const token = this.localStorage.getTokenData();
+    console.log('token ', token);
+    return jwt_decode(token);
   }
 
-  public getUser(){
-    return 1;
-  }
-
-  public getUserInfo(userId) {
-    return this.http.get<UserData>(`${api.userDataDomain}/users/${userId}`);
+  public getUserInfo() {
+    return this.http.get<UserData>(`${api.userDataDomain}/users/${this.getUser()}`);
   }
   public getGitData(name) {
     return this.http.get<UserData>(`https://api.github.com/users/${name}`);

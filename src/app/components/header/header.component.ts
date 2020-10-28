@@ -18,9 +18,8 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //
+    this.isUserLogged$ = this.localStorageService.checkToken();
   }
-
 
   public logout() {
     this.authService.logout();

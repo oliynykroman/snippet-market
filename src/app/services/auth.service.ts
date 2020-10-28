@@ -22,15 +22,31 @@ export class AuthService {
     //
   }
 
+  /**
+   * Registration method
+   * @param formData 
+   */
+  public registration(formData): Observable<any> {
+    return this.http.post<any>(`${api.apiAuthDomain}/auth/register`, formData);
+  }
+
+
+  /**
+   * login method
+   * @param formData 
+   */
   public login(formData): Observable<any> {
     return this.http.post<any>(`${api.apiAuthDomain}/auth/login`, formData).pipe(
-      switchMap((resp) => this.localStorageService.saveToken(resp)),
+      switchMap((token) => this.localStorageService.saveToken(token)),
       tap(() => {
         this.router.navigate(['/profile']);
       }),
       first());
   }
 
+  /**
+   * Logout method
+   */
   public logout() {
     this.storage.delete('access_token').pipe(first()).subscribe({
       next: () => {

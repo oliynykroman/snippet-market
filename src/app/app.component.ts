@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private userService: UserService, private router: Router) {
+  constructor() {
     //
   }
   ngOnInit() {

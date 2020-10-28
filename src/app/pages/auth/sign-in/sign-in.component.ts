@@ -35,7 +35,12 @@ export class SignInComponent implements OnInit {
     this.initForm();
   }
 
-  // get formcontrolls
+  /**
+   * get form fields
+   *
+   * @readonly
+   * @memberof SignInComponent
+   */
   get f() { return this.loginForm.controls; }
 
 

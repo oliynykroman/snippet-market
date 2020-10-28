@@ -1,22 +1,25 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { StorageMap } from '@ngx-pwa/local-storage';
-import { map, first, tap, filter } from 'rxjs/operators';
+import { map, first, tap, filter, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
-  public authToken: string = '';
+  public authToken;
 
   constructor(private storage: StorageMap, private router: Router) {
-
+    this.checkToken();
   }
-
-  public saveToken(resp): Observable<string> {
+  /**
+   * Save token in local storage
+   * @param resp 
+   */
+  public saveToken(token): Observable<string> {
     return new Observable((observer) => {
-      this.storage.set('access_token', resp.access_token).subscribe((data) => {
+      this.storage.set('access_token', token.access_token).subscribe((data) => {
         observer.next(data);
         observer.complete();
       },
@@ -28,14 +31,21 @@ export class LocalStorageService {
     });
   }
 
+  /**
+   * Check token ixist in local storage
+   */
   public checkToken() {
-   return this.storage.get('access_token').pipe(
+    return this.storage.watch('access_token').pipe(
       map((data) => {
+        this.authToken = data; 
         if (data !== undefined) {
           return true;
         }
-        return false;
-      }
-      ));
+        return false
+      }))
+  }
+
+  public getTokenData() {
+    return this.authToken;
   }
 }
