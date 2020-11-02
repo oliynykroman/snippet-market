@@ -12,22 +12,28 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  public userInfo$:Observable<UserData>;
+  public userInfo$: Observable<UserData>;
   public userGitInfo;
   public isPasswordChange = false;
   public error: string = null;
   public profileForm: FormGroup;
 
+
   constructor(private fb: FormBuilder, private userService: UserService) { }
 
   ngOnInit(): void {
     this.formInit();
-    this.userService.getUserData().subscribe((data) =>{
+    this.userService.getUserData().subscribe((data) => {
+
+    });
+    this.userService.test().subscribe(data => {
+      console.log('ffff', data);
+      this.userGitInfo = data.userGit;
       this.profileForm.patchValue({
-        firstName: data.firstName,
-        secondName: data.secondName,
-        email: data.email,
-        gitProfile: data.gitProfile
+        firstName: data.userServer.firstName,
+        secondName: data.userServer.secondName,
+        email: data.userServer.email,
+        gitProfile: data.userServer.gitProfile
       });
     });
   }

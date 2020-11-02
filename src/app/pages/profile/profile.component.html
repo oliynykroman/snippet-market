@@ -10,7 +10,7 @@
         <div class="col-sm-3">
             <div class="portlet light profile-sidebar-portlet bordered d-flex justify-content-start flex-column">
                 <div class="profile-userpic">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="img-responsive" alt=""> </div>
+                    <img [src]="userGitInfo.avatar_url" class="img-responsive" alt=""> </div>
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name"> </div>
                     <div class="profile-usertitle-job">Developer</div>
@@ -91,14 +91,14 @@
                         <h6 class="my-0">Repos:</h6>
                         <small class="text-muted">Public repos</small>
                     </div>
-                    <span class="text-muted">$12</span>
+                    <span class="text-muted">{{userGitInfo.public_repos}}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between">
                     <div>
                         <h6 class="my-0">Gists:</h6>
                         <small class="text-muted">Based on git</small>
                     </div>
-                    <span class="text-muted">$8</span>
+                    <span class="text-muted">{{userGitInfo.public_gists}}</span>
                 </li>
             </ul>
         </div>

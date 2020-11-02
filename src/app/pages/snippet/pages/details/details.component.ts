@@ -65,7 +65,7 @@ export class DetailsComponent implements OnInit {
     modalRef.componentInstance.id = id;
     modalRef.result.then((result) => {
       if (result === 'close') {
-        this.getSnippet(this.userId, this.snippetId);
+        this.getSnippet(this.snippetId);
       } else {
         alert(`Oooops something wrong. Please reload page manually`);
       }
