@@ -5,7 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
-import { UserData } from '../models/user.model';
+import { User, UserData, UserFullInfo, UserGitData } from '../models/user.model';
+import { concatMap, map } from 'rxjs/operators';
 
 
 const api = environment;
@@ -15,21 +16,34 @@ const api = environment;
 })
 export class UserService {
 
-  constructor(private http: HttpClient, private localStorage: LocalStorageService) { }
+  constructor(private http: HttpClient, private localStorage: LocalStorageService) {
+
+  }
 
   public getUser() {
-
-
-
     const token = this.localStorage.getTokenData();
-    console.log('token ', token);
     return jwt_decode(token);
   }
 
-  public getUserInfo() {
-    return this.http.get<UserData>(`${api.userDataDomain}/users/${this.getUser()}`);
+  public getUserData() {
+    return this.http.get<UserData>(`${api.userDataDomain}/users/${this.getUser().userId}`).pipe(
+      concatMap(
+        serverData =>
+          <Observable<UserFullInfo>>(
+            this.http.get<UserGitData>(`https://api.github.com/users/oliynykroman`)
+              .pipe(
+                map(gitData => ({
+                  userServer: serverData,
+                  userGit: gitData
+                })
+                )
+              )
+          )
+      )
+    )
   }
-  public getGitData(name) {
-    return this.http.get<UserData>(`https://api.github.com/users/${name}`);
+
+  public saveUserData(data: UserData){
+    return this.http.patch<UserData>(`${api.userDataDomain}/users/${this.getUser().userId}`, data);
   }
 }

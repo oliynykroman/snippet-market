@@ -5,11 +5,16 @@ export class User {
 }
 export class UserData extends User {
     secondName: string;
-    fisrtName: string;
+    firstName: string;
     gitProfile: string;
 }
 export class UserGitData extends UserData {
     public_repos: number;
     public_gists: number;
     avatar_url: string;
+}
+
+export class UserFullInfo {
+    userServer: UserData;
+    userGit: UserGitData;
 }

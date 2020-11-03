@@ -16,14 +16,11 @@ import { EditComponent } from '../edit/edit.component';
 })
 export class DetailsComponent implements OnInit {
 
-
   snippet: Observable<SnippetModel>;
-  userId: number;
   snippetId: number;
   response: HighlightResult;
 
   constructor(
-    private userService: UserService,
     private snippetService: SnippetsService,
     private route: ActivatedRoute,
     private router: Router,
@@ -33,12 +30,11 @@ export class DetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userId = this.userService.getUser();
     this.snippetId = this.route.snapshot.params.id;
-    this.getSnippet(this.userId, this.snippetId);
+    this.getSnippet(this.snippetId);
   }
-  getSnippet(userId, snippetId) {
-    this.snippet = this.snippetService.getCurrentSnippet(userId, snippetId);
+  getSnippet(snippetId) {
+    this.snippet = this.snippetService.getCurrentSnippet(snippetId);
   }
   onHighlight(e) {
     this.response = {
@@ -69,7 +65,7 @@ export class DetailsComponent implements OnInit {
     modalRef.componentInstance.id = id;
     modalRef.result.then((result) => {
       if (result === 'close') {
-        this.getSnippet(this.userId, this.snippetId);
+        this.getSnippet(this.snippetId);
       } else {
         alert(`Oooops something wrong. Please reload page manually`);
       }

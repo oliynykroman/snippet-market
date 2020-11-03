@@ -8,13 +8,28 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor(private localStorage: LocalStorageService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
+        console.log('ccc', req);
+        if (this.isValidUrlForIntercept(req.url)) {
+           let Authrequest = req.clone({
+                setHeaders: {
+                    Authorization: `Bearer test`
+                }
+            });
+            return next.handle(Authrequest);
+        }
         req = req.clone({
             setHeaders: {
-                Authorization: `token`
+                'Content-Type': 'application/json'
             }
         });
-        console.log(req);
         return next.handle(req);
+
+    }
+
+    private isValidUrlForIntercept(requestUrl: string): boolean {
+        if (requestUrl.indexOf('githun') > -1) {
+            return true;
+        }
+        return false
     }
 }
