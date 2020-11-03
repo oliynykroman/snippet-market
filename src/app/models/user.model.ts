@@ -13,3 +13,8 @@ export class UserGitData extends UserData {
     public_gists: number;
     avatar_url: string;
 }
+
+export class UserFullInfo {
+    userServer: UserData;
+    userGit: UserGitData;
+}

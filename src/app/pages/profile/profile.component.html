@@ -5,7 +5,7 @@
         </div>
     </div>
 </div>
-<div class=" mt-5 container">
+<div class=" mt-5 container" *ngIf="userGitInfo">
     <form class="row" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
         <div class="col-sm-3">
             <div class="portlet light profile-sidebar-portlet bordered d-flex justify-content-start flex-column">
@@ -17,7 +17,6 @@
                 </div>
             </div>
             <button class="btn btn-lg btn-block" type="button" (click)="changePassword()">change password</button>
-
         </div>
         <div class="col-sm-6">
             <div class="col-md-12">
@@ -39,7 +38,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="mb-3">
                         <label for="username">Email</label>
                         <div class="input-group">
@@ -60,24 +58,33 @@
                             Please enter string.
                         </div>
                     </div>
-                    <div *ngIf='isPasswordChange'>
+                    <div *ngIf='isPasswordChange' class="password-change">
                         <h4>Change password</h4>
                         <div class="mb-3">
                             <label for="newPass">New password</label>
                             <input type="password" class="form-control" id="newPass" formControlName="newPass">
-                            <div class="invalid-feedback">
-                                Please enter string.
+                            <div *ngIf="f.newPass.invalid && (f.newPass.dirty || f.newPass.touched)"
+                                class="invalid-feedback">
+                                <span *ngIf="f.newPass.errors.minlength">
+                                    Name must be at least 8 characters long.
+                                </span><br>
+                                <span *ngIf="f.newPass.errors.passwordStrength">
+                                    {{f.newPass.errors.passwordStrength}}
+                                </span>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="newPassConfirm">Repeat new password</label>
                             <input type="password" class="form-control" id="newPassConfirm"
                                 formControlName="newPassConfirm">
-                            <p *ngIf="newPass?.errors?.fieldMatch">These fields match</p>
+                            <p *ngIf="!f.newPassConfirm?.errors?.match" class="invalid-feedback">Passwords does not
+                                match</p>
+                            <p *ngIf="f.newPassConfirm?.errors?.match" class="valid-feedback">Passwords match</p>
                         </div>
                     </div>
                     <hr class="mb-4">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Save data</button>
+                    <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="!profileForm.valid">Save
+                        data</button>
                 </div>
             </div>
         </div>
