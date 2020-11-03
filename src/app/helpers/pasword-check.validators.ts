@@ -5,11 +5,9 @@ export function MatchValidator(compareToField: FormControl): ValidatorFn {
         const fromValue = control.value;
         const toValue = compareToField;
 
-        if (toValue && fromValue === toValue) {
-            console.log('valid');
+        if (toValue && fromValue !== toValue) {
             return { 'match': true };
         }
-        console.log('invalid');
         return null;
     }
 }

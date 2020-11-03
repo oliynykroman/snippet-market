@@ -77,14 +77,12 @@
                             <label for="newPassConfirm">Repeat new password</label>
                             <input type="password" class="form-control" id="newPassConfirm"
                                 formControlName="newPassConfirm">
-                            <p *ngIf="!f.newPassConfirm?.errors?.match" class="invalid-feedback">Passwords does not
-                                match</p>
-                            <p *ngIf="f.newPassConfirm?.errors?.match" class="valid-feedback">Passwords match</p>
+                            <p *ngIf="f.newPassConfirm.errors" class="invalid-feedback">Passwords does not match</p>
+                            <p *ngIf="!f.newPassConfirm.errors" class="valid-feedback">Passwords match</p>
                         </div>
                     </div>
                     <hr class="mb-4">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="!profileForm.valid">Save
-                        data</button>
+                    <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="!profileForm.valid">Save data</button>
                 </div>
             </div>
         </div>
