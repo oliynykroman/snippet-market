@@ -48,28 +48,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
     return this.profileForm.controls;
   }
 
-  matchValidator(control: AbstractControl): ValidationErrors | null {
-    const fromValue = control.value;
-    const toValue = (<FormGroup>this.profileForm.get('newPass')).value;
-
-    if (toValue && fromValue === toValue) {
-      console.log('valid');
-      return { 'match': true };
-    }
-    console.log('invalid');
-    return null;
-  }
-
   changePassword() {
     this.isPasswordChange = !this.isPasswordChange;
-    this.profileForm.addControl('newPass', this.fb.control('qqQQ11__', Validators.compose([
+    this.profileForm.addControl('newPass', this.fb.control('qqQQ11__', [
       Validators.required,
       Validators.minLength(8),
       PasswordStrengthValidator
-    ])));
+    ]
+    ));
     this.profileForm.addControl('newPassConfirm', this.fb.control('qqQQ11__', [
       Validators.required,
-      MatchValidator(this.profileForm.get('newPass').value)]
+      MatchValidator(this.profileForm.get('newPass').value)
+    ]
     ));
 
     setTimeout(() => {

@@ -1,10 +1,9 @@
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn } from "@angular/forms"
+import { AbstractControl, FormControl, ValidationErrors, ValidatorFn } from "@angular/forms"
 
-export const MatchValidator(matchField: FormControl): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null {
-        let value: string = control.value || '';
+export function MatchValidator(compareToField: FormControl): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
         const fromValue = control.value;
-        const toValue = matchField;
+        const toValue = compareToField;
 
         if (toValue && fromValue === toValue) {
             console.log('valid');
