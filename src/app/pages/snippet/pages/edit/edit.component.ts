@@ -14,7 +14,7 @@ import { ModalComponent } from 'src/app/shared/modal/modal.component';
 export class EditComponent implements OnInit {
 
   @Input() id = null;
-  formData: SnippetModel;
+  formData ;
 
   constructor(private snippetService: SnippetsService, private modalService: NgbModal, private userService: UserService, private activeModal: NgbActiveModal) {
     //

@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public isPasswordChange: boolean = false;
   public error: string = null;
   public profileForm: FormGroup;
-  private subscrition: Subscription;
+  private subscrition: Subscription = new Subscription;
 
   constructor(private fb: FormBuilder, private userService: UserService) { }
 
@@ -54,8 +54,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       Validators.required,
       Validators.minLength(8),
       PasswordStrengthValidator
-    ]
-    ));
+    ]));
     this.profileForm.addControl('newPassConfirm', this.fb.control('qqQQ11__', [
       Validators.required,
       MatchValidator(this.profileForm.get('newPass').value)
@@ -71,6 +70,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
         }
       }
       console.log(invalid);
+      Object.keys(this.profileForm.controls).forEach(key => {
+
+        const controlErrors: ValidationErrors = this.profileForm.get(key).errors;
+        if (controlErrors != null) {
+              Object.keys(controlErrors).forEach(keyError => {
+                console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
+              });
+            }
+          });
+
     }, 1000)
   }
 

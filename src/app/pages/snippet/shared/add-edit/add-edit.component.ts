@@ -16,18 +16,18 @@ export class AddEditComponent implements OnInit, OnChanges {
   constructor(private fb: FormBuilder, private userService: UserService) {
     //
   }
- 
+
   ngOnInit(): void {
     this.formInit();
   }
 
   ngOnChanges() {
-    if(this.formData) {
-      this.snippetForm.controls['title'].setValue(this.formData[0].title);
-      this.snippetForm.controls['description'].setValue(this.formData[0].description);
-      this.snippetForm.controls['userId'].setValue(this.formData[0].userId);
-      this.snippetForm.controls['lang'].setValue(this.formData[0].lang);
-      this.snippetForm.controls['body'].setValue(this.formData[0].body);
+    if (this.formData) {
+      this.snippetForm.controls['title'].setValue(this.formData.title);
+      this.snippetForm.controls['description'].setValue(this.formData.description);
+      this.snippetForm.controls['userId'].setValue(this.formData.userId);
+      this.snippetForm.controls['lang'].setValue(this.formData.lang);
+      this.snippetForm.controls['body'].setValue(this.formData.body);
     }
   }
 
