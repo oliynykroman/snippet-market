@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public isPasswordChange: boolean = false;
   public error: string = null;
   public profileForm: FormGroup;
-  private subscrition: Subscription;
+  private subscrition: Subscription = new Subscription;
 
   constructor(private fb: FormBuilder, private userService: UserService) { }
 

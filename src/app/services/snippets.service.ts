@@ -21,8 +21,15 @@ export class SnippetsService {
   public getAllSnippets() {
     return this.http.get<SnippetModel>(`${api.userDataDomain}/snippets?userId=${this.userId}`);
   }
-  public getCurrentSnippet(snippetId): Observable<SnippetModel> {
+  public getCurrentSnippet(snippetId) {
     return this.http.get<SnippetModel>(`${api.userDataDomain}/snippets?userId=${this.userId}&id=${snippetId}`).pipe(
+      first()
+    );
+  }
+
+  // toDo create right url
+  public searchSnippets(searchPhrase){
+    return this.http.get<SnippetModel>(`${api.userDataDomain}/snippets?userId=${this.userId}&id=${searchPhrase}`).pipe(
       first()
     );
   }

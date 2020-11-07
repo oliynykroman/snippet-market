@@ -4,6 +4,14 @@
   </div>
   <button routerLink="/snippets/add" type="button" class="btn btn-info col-4 col-md-2">Add new</button>
 </div>
+<div class="row justify-content-between align-items-center mb-5">
+  <form class="col-12">
+    <div class="form-group" class="col-4 pl-0">
+      <label for="findSnippetsInput">Find snipped</label>
+      <input type="text" class="form-control" id="findSnippetsInput" placeholder="Serach...">
+    </div>
+  </form>
+</div>
 <div class="row" *ngIf="snippetList">
   <div *ngFor="let item of snippetList" class="col-6 col-md-4">
     <div class="card">
