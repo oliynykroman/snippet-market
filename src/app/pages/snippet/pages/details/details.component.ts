@@ -16,7 +16,7 @@ import { EditComponent } from '../edit/edit.component';
 })
 export class DetailsComponent implements OnInit {
 
-  snippet: Observable<SnippetModel>;
+  snippet: Observable<any>;
   snippetId: number;
   response: HighlightResult;
 
