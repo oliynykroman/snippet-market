@@ -1,12 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap, first, switchMap } from 'rxjs/operators';
 import { LocalStorageService } from './local-storage.service';
-const api = environment;
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +25,7 @@ export class AuthService {
    * @param formData 
    */
   public registration(formData): Observable<any> {
-    return this.http.post<any>(`${api.apiAuthDomain}/auth/register`, formData);
+    return this.http.post<any>(`auth/register`, formData);
   }
 
 
@@ -36,7 +34,7 @@ export class AuthService {
    * @param formData 
    */
   public login(formData): Observable<any> {
-    return this.http.post<any>(`${api.apiAuthDomain}/auth/login`, formData).pipe(
+    return this.http.post<any>(`auth/login`, formData).pipe(
       switchMap((token) => this.localStorageService.saveToken(token)),
       tap(() => {
         this.router.navigate(['/profile']);

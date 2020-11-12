@@ -26,7 +26,7 @@ export class UserService {
   }
 
   public getUserData() {
-    return this.http.get<UserData>(`${api.userDataDomain}/users/${this.getUser().userId}`).pipe(
+    return this.http.get<UserData>(`users/${this.getUser().userId}`).pipe(
       concatMap(
         serverData =>
           <Observable<UserFullInfo>>(
@@ -44,6 +44,6 @@ export class UserService {
   }
 
   public saveUserData(data: UserData){
-    return this.http.patch<UserData>(`${api.userDataDomain}/users/${this.getUser().userId}`, data);
+    return this.http.patch<UserData>(`users/${this.getUser().userId}`, data);
   }
 }
