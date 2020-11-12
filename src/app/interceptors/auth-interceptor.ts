@@ -31,7 +31,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     private isValidUrlForIntercept(requestUrl: string): boolean {
-        if (requestUrl.indexOf('githun') > -1) {
+        if (requestUrl.indexOf('github') > -1) {
             return true;
         }
         return false
