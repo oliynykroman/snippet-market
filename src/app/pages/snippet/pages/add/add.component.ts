@@ -28,7 +28,7 @@ export class AddComponent implements OnInit {
     this.addSnippet = this.fb.group({
       title: this.fb.control('', Validators.required),
       description: this.fb.control('', Validators.required),
-      userId: this.fb.control(this.userService.getUser()),
+      userId: this.fb.control(this.userService.getUser().userId),
       lang: this.fb.control('', Validators.required),
       body: this.fb.control('', Validators.required),
     });
@@ -50,7 +50,8 @@ export class AddComponent implements OnInit {
   }
 
   onSubmit() {
-    this.snippetService.addSnippet(this.addSnippet.value).subscribe((data) => {
+    console.log(this.addSnippet.value);
+    this.snippetService.addSnippet(this.addSnippet.value).subscribe(() => {
       this.openModal();
     });
   }

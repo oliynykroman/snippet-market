@@ -34,7 +34,7 @@ export class SnippetsService {
     );
   }
   public addSnippet(data) {
-    return this.http.post<SnippetModel>(`snippets`, data);
+    return this.http.post<SnippetModel>(`snippets/`, data);
   }
   public editSnippet(data, id) {
     return this.http.patch<SnippetModel>(`snippets/${id}`, data);
