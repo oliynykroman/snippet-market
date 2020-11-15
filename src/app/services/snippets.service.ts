@@ -2,41 +2,44 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { SnippetModel } from '../models/snippet.model';
-import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { find, first, map, mergeAll } from 'rxjs/operators';
+import { UserService } from './user.service';
+import { Observable } from 'rxjs';
 const api = environment;
 @Injectable({
   providedIn: 'root'
 })
 export class SnippetsService {
 
-  public data: SnippetModel = new SnippetModel();
+  private userId: number = null
 
-  private dataSub$ = new BehaviorSubject<SnippetModel>(this.data);
-  public currentData = this.dataSub$.asObservable();
-
-  constructor(private http: HttpClient) { }
-
-  public changeData(newData: SnippetModel) {
-    console.log(newData);
-    this.dataSub$.next(newData);
+  constructor(private http: HttpClient, private userService: UserService) {
+    this.userId = this.userService.getUser().userId;
   }
 
-  public getSnippets(userId) {
-    return this.http.get<SnippetModel>(`${api.userDataDomain}/snippets?userId=${userId}`).pipe(
-      tap(
-        data => this.changeData(data) 
-      )
+  public getAllSnippets() {
+    return this.http.get<SnippetModel>(`snippets?userId=${this.userId}`);
+  }
+  public getCurrentSnippet(snippetId) {
+    return this.http.get(`snippets?userId=${this.userId}&id=${snippetId}`).pipe(
+      mergeAll(),
+      first()
+    );
+  }
+
+  // toDo create right url
+  public searchSnippets(searchPhrase) {
+    return this.http.get<SnippetModel>(`snippets?userId=${this.userId}&id=${searchPhrase}`).pipe(
+      first()
     );
   }
   public addSnippet(data) {
-    return this.http.post<SnippetModel>(`${api.userDataDomain}/snippets`, data);
+    return this.http.post<SnippetModel>(`snippets/`, data);
   }
-  public editSnippet(id, data) {
-    return this.http.patch<SnippetModel>(`${api.userDataDomain}/snippets/${id}`, data);
+  public editSnippet(data, id) {
+    return this.http.patch<SnippetModel>(`snippets/${id}`, data);
   }
   public deleteSnippet(id) {
-    return this.http.delete<SnippetModel>(`${api.userDataDomain}/snippets/${id}`);
+    return this.http.delete<SnippetModel>(`snippets/${id}`);
   }
 }
-  

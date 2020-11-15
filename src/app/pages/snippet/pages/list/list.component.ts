@@ -1,7 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SnippetsService } from 'src/app/services/snippets.service';
 import { SnippetModel } from 'src/app/models/snippet.model';
-import { Observable } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditComponent } from '../edit/edit.component';
 
 @Component({
   selector: 'app-list',
@@ -10,28 +12,38 @@ import { Observable } from 'rxjs';
 })
 export class ListComponent implements OnInit {
 
-  error: string = null;
-  public snippetList$: Observable<SnippetModel>;
+  public error: string = null;
+  public snippetList: SnippetModel;
+  public userId: number = null;
 
-  constructor(private snippetsService: SnippetsService) { }
+  constructor(private snippetsService: SnippetsService, private modalService: NgbModal, private userService: UserService) { }
 
   ngOnInit(): void {
-    this.getItems(1); 
+    this.getItems();
   }
 
-  getItems(userId) {
-    this.snippetList$ = this.snippetsService.getSnippets(userId);
+  getItems() {
+    this.snippetsService.getAllSnippets().subscribe(data => {
+      this.snippetList = data;
+    });
 
-  }
+  } 
   deleteItem(id) {
-    this.snippetsService.deleteSnippet(id).subscribe({
-      next(data) {
+    this.snippetsService.deleteSnippet(id).subscribe(
+      success => this.getItems(),
+      error => alert(`Oooops something wrong: ${error}. Please try again later`)
+    );
+  }
 
-      },
-      error(msg) {
-        this.error = msg;
+  editItem(id) {
+    const modalRef = this.modalService.open(EditComponent);
+    modalRef.componentInstance.id = id;
+    modalRef.result.then((result) => {
+      if (result === 'close') {
+        this.getItems();
+      } else {
+        alert(`Oooops something wrong. Please reload page manually`);
       }
     });
   }
-
 }

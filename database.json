@@ -1,0 +1,142 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "bruno@email.com",
+      "firstName": "Bruno",
+      "secondName": "Doe",
+      "gitProfile": "oliynykroman",
+      "avatar_url": "",
+      "public_repos": "",
+      "public_gists": "",
+      "newPass": "qqQQ11__",
+      "newPassConfirm": "qqQQ11__1"
+    }
+  ],
+  "snippets": [
+    {
+      "title": "ggg",
+      "description": "gg",
+      "userId": 1,
+      "lang": "CSS",
+      "body": "gggxsa",
+      "id": 29
+    },
+    {
+      "title": "sss",
+      "description": "sss",
+      "userId": 1,
+      "lang": "TypeScript",
+      "body": "sss",
+      "id": 30
+    },
+    {
+      "title": "Demo snippet",
+      "description": "demo for highlighter",
+      "userId": 1,
+      "lang": "Javascript",
+      "body": "function myFunction() {\n    document.getElementById(\"demo1\").innerHTML = \"Hello there!\";\n    document.getElementById(\"demo2\").innerHTML = \"How are you?\";",
+      "id": 36
+    },
+    {
+      "title": "SOD-205 grid, some changes, added new password functionality",
+      "description": "sqa",
+      "userId": 1,
+      "lang": "CSS",
+      "body": "sasa",
+      "id": 37
+    },
+    {
+      "title": "ssss",
+      "description": "sss",
+      "userId": {
+        "email": "bruno@email.com",
+        "password": "QQww11__",
+        "userId": 1,
+        "iat": 1605436106,
+        "exp": 1605439706
+      },
+      "lang": "Javascript",
+      "body": "ssss",
+      "id": 38
+    },
+    {
+      "title": "ssssss",
+      "description": "",
+      "userId": {
+        "email": "bruno@email.com",
+        "password": "QQww11__",
+        "userId": 1,
+        "iat": 1605436106,
+        "exp": 1605439706
+      },
+      "lang": "",
+      "body": "",
+      "id": 39
+    },
+    {
+      "title": "qwert",
+      "description": "",
+      "userId": {
+        "email": "bruno@email.com",
+        "password": "QQww11__",
+        "userId": 1,
+        "iat": 1605436106,
+        "exp": 1605439706
+      },
+      "lang": "",
+      "body": "",
+      "id": 40
+    },
+    {
+      "title": "qwert2",
+      "description": "",
+      "userId": {
+        "email": "bruno@email.com",
+        "password": "QQww11__",
+        "userId": 1,
+        "iat": 1605436106,
+        "exp": 1605439706
+      },
+      "lang": "",
+      "body": "",
+      "id": 41
+    },
+    {
+      "title": "wwww",
+      "description": "",
+      "userId": {
+        "email": "bruno@email.com",
+        "password": "QQww11__",
+        "userId": 1,
+        "iat": 1605436106,
+        "exp": 1605439706
+      },
+      "lang": "",
+      "body": "",
+      "id": 42
+    },
+    {
+      "title": "qqq",
+      "description": "",
+      "userId": {
+        "email": "bruno@email.com",
+        "password": "QQww11__",
+        "userId": 1,
+        "iat": 1605436106,
+        "exp": 1605439706
+      },
+      "lang": "",
+      "body": "",
+      "id": 43
+    },
+    {
+      "title": "wwwwfffredsc sdckpdwcnj'ds",
+      "description": "",
+      "userId": 1,
+      "lang": "",
+      "body": "",
+      "id": 44
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+<form class="form-signin" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <h1 class="h3 mb-3 font-weight-normal text-center">Registration</h1>
+
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+        {{errorMessage}}
+    </div>
+
+    <div class="form-group">
+        <label for="username">Name</label>
+        <input type="text" class="form-control" name="username" id="username" formControlName="name">
+        <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="invalid-feedback">
+            Filed name should be not empty
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" name="email" id="email" formControlName="email" required>
+        <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="invalid-feedback">
+            Provide valid email
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="secondName">Password</label>
+        <input type="password" class="form-control" name="password" id="password" aria-describedby="passwordHelpInline"
+            formControlName="password" required>
+        <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="invalid-feedback"
+            style="display: block;">
+            <span *ngIf="f.password.errors.minlength">
+                Name must be at least 8 characters long.
+            </span><br>
+            <span *ngIf="f.password.errors.passwordStrength">
+                {{f.password.errors.passwordStrength}}
+            </span>
+        </div>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block mt-5" type="submit"
+        [disabled]="!registrationForm.valid">Registration</button>
+</form>

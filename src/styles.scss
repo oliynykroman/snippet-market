@@ -1,1 +1,28 @@
 @import "~bootstrap/scss/bootstrap";
+
+html, body{
+    margin: 0;
+    height: 100%;
+    min-height: 100%;
+}
+body{
+
+}
+app-root{
+    display: flex;
+    width: 100%;
+    min-height: 100%;
+    flex-direction: column;
+}
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+// override invalid message 
+.invalid-feedback{
+    display: block;
+}
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
