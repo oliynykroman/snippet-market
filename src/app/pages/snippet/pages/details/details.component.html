@@ -1,4 +1,4 @@
-<ng-container *ngFor="let item of snippet | async">
+<ng-container *ngIf="snippet | async as item">
     <div class="row">
         <h3 class="w-100 display-4 text-center">{{item.title}}</h3>
         <p class="w-100 m-t-2 text-center font-weight-lighter">{{item.description}}</p>

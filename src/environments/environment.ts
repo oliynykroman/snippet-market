@@ -4,9 +4,10 @@
 
 export const environment = {
   production: false,
-  domain: 'http://localhost:4200',
-  userDataDomain: 'http://localhost:3000',
+  domain: 'http://localhost:4200/',
+  userDataDomain: 'http://localhost:3000/',
   apiAuthDomain: 'http://localhost:8000/',
+  apiGitDomain: 'https://api.github.com/',
 };
 
 /*
