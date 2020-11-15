@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
-import { Observable, Subscription, from } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Router } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
-import { User, UserData, UserFullInfo, UserGitData } from '../models/user.model';
+import { UserData, UserFullInfo, UserGitData } from '../models/user.model';
 import { concatMap, map } from 'rxjs/operators';
 
 
@@ -30,7 +29,7 @@ export class UserService {
       concatMap(
         serverData =>
           <Observable<UserFullInfo>>(
-            this.http.get<UserGitData>(`https://api.github.com/users/oliynykroman`)
+            this.http.get<UserGitData>(`${api.apiGitDomain}users/${serverData.gitProfile}`)
               .pipe(
                 map(gitData => ({
                   userServer: serverData,
@@ -43,7 +42,7 @@ export class UserService {
     )
   }
 
-  public saveUserData(data: UserData){
+  public saveUserData(data: UserData) {
     return this.http.patch<UserData>(`users/${this.getUser().userId}`, data);
   }
 }

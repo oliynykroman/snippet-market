@@ -18,10 +18,10 @@ export class SnippetsService {
   }
 
   public getAllSnippets() {
-    return this.http.get<SnippetModel>(`${api.userDataDomain}/snippets?userId=${this.userId}`);
+    return this.http.get<SnippetModel>(`snippets?userId=${this.userId}`);
   }
   public getCurrentSnippet(snippetId) {
-    return this.http.get(`${api.userDataDomain}/snippets?userId=${this.userId}&id=${snippetId}`).pipe(
+    return this.http.get(`snippets?userId=${this.userId}&id=${snippetId}`).pipe(
       mergeAll(),
       first()
     );
@@ -29,17 +29,17 @@ export class SnippetsService {
 
   // toDo create right url
   public searchSnippets(searchPhrase) {
-    return this.http.get<SnippetModel>(`${api.userDataDomain}/snippets?userId=${this.userId}&id=${searchPhrase}`).pipe(
+    return this.http.get<SnippetModel>(`snippets?userId=${this.userId}&id=${searchPhrase}`).pipe(
       first()
     );
   }
   public addSnippet(data) {
-    return this.http.post<SnippetModel>(`${api.userDataDomain}/snippets`, data);
+    return this.http.post<SnippetModel>(`snippets`, data);
   }
   public editSnippet(data, id) {
-    return this.http.patch<SnippetModel>(`${api.userDataDomain}/snippets/${id}`, data);
+    return this.http.patch<SnippetModel>(`snippets/${id}`, data);
   }
   public deleteSnippet(id) {
-    return this.http.delete<SnippetModel>(`${api.userDataDomain}/snippets/${id}`);
+    return this.http.delete<SnippetModel>(`snippets/${id}`);
   }
 }

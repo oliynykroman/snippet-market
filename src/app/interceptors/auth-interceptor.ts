@@ -11,29 +11,43 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor(private localStorage: LocalStorageService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log('ccc', req);
         if (this.isValidUrlForIntercept(req.url)) {
-           let Authrequest = req.clone({
+            let gitDataRequest = req.clone({
                 setHeaders: {
-                    Authorization: `Bearer test`
+                    'Content-Type': 'application/json'
                 }
             });
-            return next.handle(Authrequest);
+            return next.handle(gitDataRequest); 
         }
-        req = req.clone({
-            url: api.apiAuthDomain + req.urlWithParams,
-            setHeaders: {
-                'Content-Type': 'application/json'
-            }
-        });
-        return next.handle(req);
+        else {
+            if (typeof this.localStorage.getTokenData() !== "undefined") {
+                let authRequest = req.clone({
+                    url: api.userDataDomain + req.url,
+                    setHeaders: {
+                        Authorization: `Bearer Authtoken`
+                    }
+                });
+                return next.handle(authRequest);
+            } 
+            let dataRequest = req.clone({
+                url: api.apiAuthDomain + req.url,
+                setHeaders: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            return next.handle(dataRequest);
+        }
+
 
     }
 
     private isValidUrlForIntercept(requestUrl: string): boolean {
+        console.log('change interceptor for github');
         if (requestUrl.indexOf('github') > -1) {
+            console.log('github');
             return true;
         }
-        return false
+        console.log('my server');
+        return false;
     }
 }
