@@ -4,6 +4,8 @@ import { SnippetModel } from 'src/app/models/snippet.model';
 import { UserService } from 'src/app/services/user.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditComponent } from '../edit/edit.component';
+import { concatMap, switchMap } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -15,11 +17,13 @@ export class ListComponent implements OnInit {
   public error: string = null;
   public snippetList: SnippetModel;
   public userId: number = null;
+  public updateList = new BehaviorSubject<boolean>(false);
 
   constructor(private snippetsService: SnippetsService, private modalService: NgbModal, private userService: UserService) { }
 
   ngOnInit(): void {
     this.getItems();
+    this.updateList.subscribe(update=>update === true ? this.getItems() : '');
   }
 
   getItems() {
@@ -27,12 +31,9 @@ export class ListComponent implements OnInit {
       this.snippetList = data;
     });
 
-  } 
+  }
   deleteItem(id) {
-    this.snippetsService.deleteSnippet(id).subscribe(
-      success => this.getItems(),
-      error => alert(`Oooops something wrong: ${error}. Please try again later`)
-    );
+    this.snippetsService.deleteSnippet(id).subscribe(()=>this.updateList.next(true));
   }
 
   editItem(id) {

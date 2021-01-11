@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { StorageMap } from '@ngx-pwa/local-storage';
-import { map, first, tap, filter, switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class LocalStorageService {
   }
   /**
    * Save token in local storage
-   * @param resp 
+   * @param resp
    */
   public saveToken(token): Observable<string> {
     return new Observable((observer) => {
@@ -37,7 +37,7 @@ export class LocalStorageService {
   public checkToken() {
     return this.storage.watch('access_token').pipe(
       map((data) => {
-        this.authToken = data; 
+        this.authToken = data;
         if (data !== undefined) {
           return true;
         }
