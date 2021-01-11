@@ -12,6 +12,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { MainPipeModule } from './pipes/main-pipe.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
     AppRoutingModule,
     ForgotPasswordModule,
     SignInModule,
-    NgbModule
+    NgbModule,
+    MainPipeModule
   ],
   providers: [
     AuthService, {
