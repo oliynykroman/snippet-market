@@ -16,6 +16,7 @@ export class ListComponent implements OnInit {
 
   public error: string = null;
   public snippetList: SnippetModel;
+  public searchText: string;
   public userId: number = null;
   public updateList = new BehaviorSubject<boolean>(false);
 

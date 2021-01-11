@@ -1,34 +1,61 @@
-<div class="row justify-content-between align-items-center  mb-5">
+<div class="row justify-content-between align-items-center mb-5">
   <div class="col-8 col-md-10">
     <h1 class="display-4">Snipeets</h1>
   </div>
-  <button routerLink="/snippets/add" type="button" class="btn btn-info col-4 col-md-2">Add new</button>
+  <button
+    routerLink="/snippets/add"
+    type="button"
+    class="btn btn-info col-4 col-md-2"
+  >
+    Add new
+  </button>
 </div>
 <div class="row justify-content-between align-items-center mb-5">
-  <form class="col-12">
+  <div class="col-12">
     <div class="form-group" class="col-4 pl-0">
       <label for="findSnippetsInput">Find snipped</label>
-      <input type="text" class="form-control" id="findSnippetsInput" placeholder="Serach...">
+      <input
+        [(ngModel)]="searchText"
+        type="text"
+        class="form-control"
+        id="findSnippetsInput"
+        placeholder="Serach..."
+      />
     </div>
-  </form>
+  </div>
 </div>
 <div class="row" *ngIf="snippetList">
-  <div *ngFor="let item of snippetList" class="col-6 col-md-4">
+  <div *ngFor="let item of snippetList | filterItems : searchText" class="col-6 col-md-4">
     <div class="card">
-      <div class="card-header"><span class="text-muted">Lang: </span>{{item.lang}}</div>
-      <button type="button" class="close" aria-label="Close" (click)="deleteItem(item.id)">
+      <div class="card-header">
+        <span class="text-muted">Lang: </span>{{ item.lang }}
+      </div>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="deleteItem(item.id)"
+      >
         <span aria-hidden="true">&times;</span>
       </button>
       <div class="card-body">
         <h5 class="card-title">
-          {{item.title}}
+          {{ item.title }}
         </h5>
         <p class="card-text">
-          {{item.description}}
+          {{ item.description }}
         </p>
         <div class="btn-group" role="group" aria-label="Snippet actions">
-          <button type="button" class="btn btn-light" (click)="editItem(item.id)">Edit</button>
-          <a class="btn btn-info" [routerLink]="['/snippets/details', item.id]">Details</a>
+          <button
+            type="button"
+            class="btn btn-light"
+            (click)="editItem(item.id)"
+          >
+            Edit
+          </button>
+          <a class="btn btn-info" [routerLink]="['/snippets/details', item.id]"
+            >Details</a
+          >
         </div>
       </div>
     </div>
